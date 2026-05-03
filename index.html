@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0A0A0A">
+<meta name="description" content="七號貨櫃 ｜ 澎湖馬公海邊的單點貨櫃調酒酒吧。每日 18:07—00:07，週一・四公休。">
+<meta property="og:title" content="七號貨櫃 ｜ Container No.7">
+<meta property="og:description" content="海邊 chill 一下。澎湖馬公，每日 18:07—00:07。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<title>七號貨櫃 ｜ Container No.7 ｜ 澎湖海邊 chill 一下</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+:root {
+  --bg: #0A0A0A;
+  --bg-card: #141414;
+  --bg-card-hover: #1A1A1A;
+  --line: #262626;
+  --line-soft: #1F1F1F;
+  --ink: #F5F5F0;
+  --ink-mute: #888;
+  --ink-faint: #555;
+  --gold: #C9A961;
+  --gold-soft: rgba(201, 169, 97, 0.18);
+  --serif: "Playfair Display", "Noto Serif TC", "Songti TC", Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "PingFang TC", "Noto Sans TC", sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* === HERO === */
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+  position: relative;
+  background: var(--bg);
+}
+
+.hero-logo-img {
+  display: block;
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+  margin-bottom: 48px;
+  mix-blend-mode: screen;
+}
+
+.hero-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 56px;
+}
+
+/* 預設隱藏 fallback；圖檔載入失敗時 JS 用 inline style 蓋過 */
+.hero-logo-fallback { display: none; }
+
+.hero-logo .penghu {
+  font-family: var(--serif);
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  color: var(--ink);
+  font-weight: 400;
+  padding-left: 0.4em;
+}
+
+.hero-logo .penghu .it {
+  font-style: italic;
+  letter-spacing: 0.3em;
+}
+
+.hero-logo h1 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 7.5vw, 56px);
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  color: var(--ink);
+  padding-left: 0.16em;
+  white-space: nowrap;
+}
+
+.hero-logo .tag {
+  font-family: var(--serif);
+  font-size: clamp(9px, 2.4vw, 11px);
+  letter-spacing: 0.4em;
+  color: var(--ink);
+  padding-left: 0.4em;
+  font-weight: 400;
+}
+
+.hero-zh {
+  font-family: var(--sans);
+  font-size: clamp(13px, 3.4vw, 16px);
+  letter-spacing: 0.32em;
+  color: var(--ink-mute);
+  padding-left: 0.32em;
+  margin-bottom: 56px;
+  font-weight: 300;
+}
+
+.hero-zh .sep { color: var(--ink-faint); margin: 0 6px; }
+
+.hero-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--ink-mute);
+  padding-left: 0.22em;
+}
+
+.hero-meta .hours {
+  font-family: var(--serif);
+  color: var(--ink);
+  font-size: clamp(17px, 4.4vw, 22px);
+  letter-spacing: 0.16em;
+  padding-left: 0.16em;
+  font-weight: 400;
+}
+
+.hero-meta .closed {
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  padding-left: 0.32em;
+  color: var(--ink-mute);
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  letter-spacing: 0.5em;
+  color: var(--ink-faint);
+  padding-left: 0.5em;
+  animation: floatY 2.4s ease-in-out infinite;
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
+  50%      { transform: translateX(-50%) translateY(6px); opacity: 1; }
+}
+
+/* === NAV === */
+nav.menu-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: saturate(160%) blur(14px);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  border-bottom: 1px solid var(--gold-soft);
+  padding: 14px 16px;
+  text-align: center;
+  white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+nav.menu-nav::-webkit-scrollbar { display: none; }
+
+nav.menu-nav a {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  padding: 4px 14px;
+  margin: 0 2px;
+  color: var(--ink-mute);
+  transition: color 0.15s;
+  padding-left: calc(14px + 0.28em);
+  padding-right: 14px;
+}
+
+nav.menu-nav a:hover, nav.menu-nav a:focus { color: var(--gold); }
+
+/* === SECTION === */
+section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 72px 20px 16px;
+}
+
+section h2.section-title {
+  font-family: var(--serif);
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.4em;
+  color: var(--ink);
+  font-weight: 400;
+  margin-bottom: 6px;
+  padding-left: 0.4em;
+}
+
+section h2.section-title .zh {
+  font-family: var(--sans);
+  display: block;
+  font-size: 24px;
+  letter-spacing: 0.32em;
+  color: var(--ink-mute);
+  font-weight: 300;
+  margin-top: 10px;
+  padding-left: 0.32em;
+}
+
+section .section-rule {
+  width: 32px;
+  height: 1px;
+  background: var(--ink-mute);
+  margin: 22px auto 44px;
+  opacity: 0.4;
+}
+
+/* === COCKTAIL GRID === */
+.cocktail-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 640px) {
+  .cocktail-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+
+@media (min-width: 1024px) {
+  .cocktail-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+article.cocktail {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+article.cocktail:hover {
+  border-color: #444;
+  background: var(--bg-card-hover);
+  transform: translateY(-1px);
+}
+
+article.cocktail.open {
+  border-color: var(--gold);
+  background: var(--bg-card);
+}
+
+article.cocktail > .head {
+  padding: 22px 20px 18px;
+  cursor: pointer;
+  user-select: none;
+}
+
+article.cocktail h3 {
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+article.cocktail h3 .en {
+  display: block;
+  margin-top: 4px;
+  color: var(--ink-mute);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  font-weight: 400;
+  text-transform: uppercase;
+  padding-left: 0.28em;
+}
+
+article.cocktail.open h3 .en { color: var(--gold); }
+
+article.cocktail .stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line-soft);
+}
+
+article.cocktail .stat .vol {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ink-mute);
+  padding-left: 0.16em;
+}
+
+article.cocktail .stat .price {
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  font-weight: 300;
+  padding-left: 0.08em;
+}
+
+article.cocktail .taste {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 14px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+  padding-left: 0.1em;
+}
+
+article.cocktail .taste .star {
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  margin-left: 4px;
+}
+
+article.cocktail .taste .dim {
+  color: #2A2A2A;
+}
+
+article.cocktail .story {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+article.cocktail.open .story {
+  max-height: 600px;
+}
+
+article.cocktail .story-inner {
+  padding: 0 20px 22px;
+  border-top: 1px solid var(--line-soft);
+  margin-top: 0;
+  padding-top: 18px;
+}
+
+article.cocktail .story-inner p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #C5C5BE;
+  white-space: pre-line;
+  letter-spacing: 0.02em;
+}
+
+article.cocktail .toggle-hint {
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  color: var(--ink-faint);
+  padding: 12px 0 4px;
+  padding-left: 0.4em;
+}
+
+article.cocktail.open .toggle-hint { color: var(--gold); }
+
+/* === EATS === */
+.eats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 720px) {
+  .eats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+
+.eats-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.eats-img {
+  margin: 0;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: #050505;
+  position: relative;
+  overflow: hidden;
+}
+
+.eats-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.eats-caption-fallback {
+  display: none;
+  position: absolute;
+  inset: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 36px 28px;
+  text-align: left;
+}
+
+.eats-img.img-missing .eats-caption-fallback {
+  display: flex;
+}
+
+.eats-caption-fallback h3 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 6vw, 36px);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.eats-caption-fallback .en {
+  font-family: var(--serif);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--ink-mute);
+  margin-bottom: 22px;
+  padding-left: 0.22em;
+}
+
+.eats-caption-fallback .price {
+  font-family: var(--serif);
+  font-size: 30px;
+  color: var(--ink);
+  margin-bottom: 14px;
+  letter-spacing: 0.04em;
+}
+
+.eats-caption-fallback .price .currency {
+  font-size: 12px;
+  color: var(--ink-mute);
+  margin-right: 6px;
+  letter-spacing: 0.18em;
+  vertical-align: 0.4em;
+  padding-left: 0.18em;
+}
+
+.eats-caption-fallback .spicy {
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  border: 1px solid var(--gold-soft);
+  border-radius: 999px;
+  padding: 6px 14px 6px 18px;
+  margin-bottom: 22px;
+  white-space: nowrap;
+}
+
+.eats-caption-fallback .tag-zh {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--ink);
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.eats-caption-fallback .tag-en {
+  font-family: var(--serif);
+  font-size: 12px;
+  color: var(--ink-mute);
+  font-style: italic;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  padding-left: 0.08em;
+}
+
+.eats-caption-fallback .note-zh {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-mute);
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+}
+
+.eats-caption-fallback .note-en {
+  font-family: var(--serif);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  font-style: italic;
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* === BEER / SODA / SOFT LIST === */
+.simple-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+@media (min-width: 640px) {
+  .simple-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+}
+
+@media (min-width: 900px) {
+  .simple-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.simple-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  transition: border-color 0.2s;
+}
+
+.simple-card:hover { border-color: #3A3A3A; }
+
+.simple-card .name {
+  font-size: 17px;
+  letter-spacing: 0.06em;
+  font-weight: 300;
+}
+
+.simple-card .name .en {
+  display: block;
+  margin-top: 3px;
+  font-size: 9.5px;
+  letter-spacing: 0.24em;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+  padding-left: 0.24em;
+}
+
+.simple-card .meta {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.simple-card .meta .price {
+  font-size: 15px;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  font-weight: 300;
+  padding-left: 0.08em;
+}
+
+.simple-card .meta .sub {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--ink-mute);
+  margin-top: 3px;
+  padding-left: 0.18em;
+}
+
+.section-note {
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  margin-top: 20px;
+  padding-left: 0.18em;
+}
+
+/* === VISIT === */
+section.visit {
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+
+.visit-card {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 40px 28px;
+}
+
+.visit-card .row {
+  margin: 22px 0;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.visit-card .row:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.visit-card .label {
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  margin-bottom: 10px;
+  padding-left: 0.4em;
+}
+
+.visit-card .value {
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  font-weight: 300;
+  color: var(--ink);
+  padding-left: 0.1em;
+}
+
+.visit-card .value.big {
+  font-size: clamp(22px, 5.5vw, 28px);
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  font-weight: 200;
+  padding-left: 0.16em;
+}
+
+.visit-card .value.sub {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--ink-mute);
+  margin-top: 8px;
+  padding-left: 0.22em;
+}
+
+.maps-link {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 12px 28px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  font-weight: 400;
+  transition: background 0.2s, color 0.2s;
+  padding-left: calc(28px + 0.32em);
+}
+
+.maps-link:hover {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+/* === FOOTER === */
+footer.site {
+  text-align: center;
+  padding: 40px 20px 32px;
+  border-top: 1px solid var(--gold-soft);
+  margin-top: 48px;
+  color: var(--ink-faint);
+}
+
+footer.site .mark {
+  font-size: 10px;
+  letter-spacing: 0.5em;
+  color: var(--gold);
+  margin-bottom: 8px;
+  padding-left: 0.5em;
+}
+
+footer.site .copy {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  padding-left: 0.18em;
+}
+
+footer.site .social {
+  margin-top: 16px;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  padding-left: 0.24em;
+}
+
+footer.site .social a {
+  margin: 0 8px;
+  color: var(--ink-mute);
+  transition: color 0.15s;
+}
+
+footer.site .social a:hover { color: var(--gold); }
+
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <img class="hero-logo-img" src="img/logo.png" alt="Penghu Container No.7 ｜ Cocktail.Chill."
+       onerror="this.style.display='none'; document.querySelector('.hero-logo-fallback').style.display='flex';">
+
+  <!-- Fallback: 圖檔還沒到位前用 CSS 重建 LOGO -->
+  <div class="hero-logo-fallback hero-logo">
+    <p class="penghu">PENG<span class="it">HU</span></p>
+    <h1>CONTAINER&nbsp;NO.7</h1>
+    <p class="tag">COCKTAIL<span class="sep">.</span>CHILL<span class="sep">.</span></p>
+  </div>
+
+  <p class="hero-zh">七號貨櫃<span class="sep">｜</span>海邊 chill 一下</p>
+  <div class="hero-meta">
+    <span class="hours">18:07 — 00:07</span>
+    <span class="closed">每週一・四 公休</span>
+  </div>
+  <p class="scroll-hint">SCROLL</p>
+</header>
+
+<!-- ============ NAV ============ -->
+<nav class="menu-nav" aria-label="主選單">
+  <a href="#eats">主食</a>
+  <a href="#cocktails">雞尾酒</a>
+  <a href="#mocktail">好氣</a>
+  <a href="#visit">前來</a>
+</nav>
+
+<!-- ============ EATS ============ -->
+<section id="eats">
+  <h2 class="section-title">EATS<span class="zh">主食</span></h2>
+  <div class="section-rule"></div>
+  <div class="eats-grid" id="eats-grid"></div>
+  <p class="section-note">慢燉入味 ｜ 秘藏濃香</p>
+</section>
+
+<!-- ============ COCKTAILS ============ -->
+<section id="cocktails">
+  <h2 class="section-title">COCKTAILS<span class="zh">雞尾酒</span></h2>
+  <div class="section-rule"></div>
+  <div class="cocktail-grid" id="cocktail-grid"></div>
+</section>
+
+<!-- ============ MOCKTAIL ============ -->
+<section id="mocktail">
+  <h2 class="section-title">ANGRY SODA<span class="zh">好氣氣泡飲</span></h2>
+  <div class="section-rule"></div>
+  <div class="simple-grid" id="soda-grid"></div>
+  <p class="section-note">無酒精 ｜ 風味果醬 ＋ Soda</p>
+</section>
+
+<!-- ============ VISIT ============ -->
+<section id="visit" class="visit">
+  <h2 class="section-title">VISIT<span class="zh">前來</span></h2>
+  <div class="section-rule"></div>
+  <div class="visit-card">
+    <div class="row">
+      <p class="label">HOURS ｜ 營業時間</p>
+      <p class="value big">18:07 — 00:07</p>
+      <p class="value sub">週一・四 公休</p>
+    </div>
+    <div class="row">
+      <p class="label">ADDRESS ｜ 地址</p>
+      <p class="value">880 澎湖縣馬公市 11015 號</p>
+    </div>
+    <a class="maps-link"
+       href="https://www.google.com/maps/search/?api=1&query=%E4%B8%83%E8%99%9F%E8%B2%A8%E6%AB%83+%E6%BE%8E%E6%B9%96%E9%A6%AC%E5%85%AC"
+       target="_blank" rel="noopener">GOOGLE MAPS →</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site">
+  <p class="mark">CONTAINER NO.7</p>
+  <p class="copy">© 七號貨櫃 ｜ 澎湖馬公</p>
+  <p class="social">
+    <!-- 待補社群連結：IG / Threads / Google Maps -->
+  </p>
+</footer>
+
+<script>
+// ============ DATA ============
+const eats = [
+  {
+    cn: "秘藏牛肉麵",
+    en: "Secret Recipe Braised Beef Noodles",
+    price: 280,
+    spicy: "微微辣 ｜ Mildly Spicy",
+    tagZh: "慢燉入味，秘藏濃香",
+    tagEn: "Slow-Braised. Deeply Savory.",
+    noteZh: "每一口，都是厚實而溫潤的滿足。",
+    noteEn: "Rich comfort in every bite.",
+    img: "img/beef-noodles.jpg"
+  },
+  {
+    cn: "秘藏牛肉飯",
+    en: "Secret Recipe Braised Beef Rice",
+    price: 280,
+    spicy: "微微辣 ｜ Mildly Spicy",
+    tagZh: "慢燉入味，秘藏濃香",
+    tagEn: "Slow-Braised. Deeply Savory.",
+    noteZh: "一碗，藏住時間熬出的風味。",
+    noteEn: "A bowl of flavor crafted with time.",
+    img: "img/beef-rice.jpg"
+  }
+];
+
+const cocktails = [
+  {
+    cn: "邦代海灘", en: "Bondi Beach",
+    vol: "105ml", abv: "16%", price: 300,
+    taste: { acid: 2, sweet: 4, alc: 3, body: 3 },
+    story: "2017 年在澳洲邦代海灘認識一個義大利人 Frenco，原本以為很教父，但熱情又多話的 Frenco 請了我一杯性感海灘。可能以為我酒量不好，接著就像電影一樣——每個來自異鄉的人聚在一起，一定都會討論自己的家鄉。Frenco 也不意外。聽著他那義式英文，又面對那藍天碧海，真是個美好的一天。"
+  },
+  {
+    cn: "太陽神", en: "Apollo",
+    vol: "110ml", abv: "20%", price: 300,
+    taste: { acid: 3, sweet: 2, alc: 3, body: 2 },
+    story: "使用澎湖當地仙人掌酒，搭配紅酒襯托果香香氣，結合龍舌蘭清新草本香。簡單不失層次，非常適合在夏天的海灘飲用。"
+  },
+  {
+    cn: "CASINO", en: "Casino",
+    vol: "130ml", abv: "23%", price: 350,
+    taste: { acid: 3, sweet: 3, alc: 2, body: 4 },
+    story: "第一口清新的風味，迎來中韻淡淡的草本香，接著一鼓作氣打出好牌——讓你到家還默默回味著這勝利尾韻。"
+  },
+  {
+    cn: "洛神賦", en: "Ode of the River Goddess",
+    vol: "90ml", abv: "12%", price: 300,
+    taste: { acid: 2, sweet: 2, alc: 2, body: 1 },
+    story: "洛神花是紅色的，是很溫暖的紅色，是愛的顏色，是在鄉愁時陪伴我的顏色。\n洛神花是家，是母親，是暖冬時在沙發上，冒著煙的馬克杯中，能暖身子的一杯茶。"
+  },
+  {
+    cn: "性轉山格利亞", en: "Sexual Transformation Sangria",
+    vol: "145ml", abv: "11%", price: 350,
+    taste: { acid: 1, sweet: 3, alc: 2, body: 4 },
+    story: "傳統的 Sangria 躺在西班牙午後的庭院，輕盈、果香、好入口。\n我把白蘭地和香艾酒推進去，它就站起來了——\n同樣的紅酒、柳橙、莓果，換個骨架，就是另一個人。"
+  },
+  {
+    cn: "白日夢", en: "Daydream",
+    vol: "110ml", abv: "18%", price: 350,
+    taste: { acid: 3, sweet: 1, alc: 2, body: 3 },
+    story: "午後三點，太陽斜斜地落在桌邊。\n沒在做什麼，也沒有想做什麼。\n葡萄與櫻桃的香氣繞過來，像一段沒打算結束的慢板，把人從這裡，輕輕推到夢的那邊。"
+  },
+  {
+    cn: "生氣的查理", en: "Angry Charlie",
+    vol: "85ml", abv: "15%", price: 350,
+    taste: { acid: 2, sweet: 4, alc: 1, body: 2 },
+    story: "查理今天又在氣了。\n大概是電梯太擠、咖啡太燙、或某個沒回的訊息。\n但他不知道的是——黑刺李會把火氣一點點化開，杏仁是哄人的，蘇打是讓他嘆出那口氣的。\n喝完，他大概會忘記在氣什麼。"
+  },
+  {
+    cn: "水手畢夏普", en: "Seaman Bishop",
+    vol: "140ml", abv: "25%", price: 400,
+    taste: { acid: 2, sweet: 3, alc: 3, body: 4 },
+    story: "大海上沒有教堂，水手有水手的祈禱。\n蘭姆酒是甲板、琴酒是風、梅酒是岸上的記憶，百香果是熱帶夜裡那束突然出現的光。\n一杯下去你就懂——為什麼遠航的人總要對著星星說話。"
+  },
+  {
+    cn: "青梅竹馬", en: "Childhood Sweethearts",
+    vol: "95ml", abv: "16%", price: 350,
+    taste: { acid: 2, sweet: 3, alc: 3, body: 3 },
+    story: "不是每個青梅竹馬最後都在一起。\n但那個夏天的午後、那條彎彎的小巷、那聲喊你名字的口吻，還是會被收進記憶最暖的角落。\n青蘋果是初遇的酸，梅酒是時間的甜，白蘭地是後來才懂的溫度。"
+  },
+  {
+    cn: "女王蜂", en: "Queen Bee",
+    vol: "100ml", abv: "28%", price: 400,
+    taste: { acid: 1, sweet: 3, alc: 4, body: 3 },
+    story: "不是每座山都需要被征服。\n有些山就站在那裡，自成風景。\n四玫瑰是她肩上的盔甲，巨峰葡萄是她裙擺的紫色，你只能仰望——\n然後喝下這口烈，記住自己曾經這樣抬頭過。"
+  }
+];
+
+const sodas = [
+  { cn: "巨峰葡萄好氣", en: "Angry Kyoho Grape" },
+  { cn: "仙人掌好氣",   en: "Angry Cactus" },
+  { cn: "覆盆莓好氣",   en: "Angry Raspberry" },
+  { cn: "葡萄柚好氣",   en: "Angry Grapefruit" },
+  { cn: "百香好氣",     en: "Angry Passion Fruit" },
+  { cn: "桑椹好氣",     en: "Angry Mulberry" }
+];
+
+// ============ RENDER ============
+function stars(n, total = 4) {
+  let out = '<span class="star">';
+  for (let i = 0; i < n; i++) out += '★';
+  out += '</span><span class="dim">';
+  for (let i = n; i < total; i++) out += '★';
+  out += '</span>';
+  return out;
+}
+
+const egrid = document.getElementById('eats-grid');
+eats.forEach((e) => {
+  const card = document.createElement('article');
+  card.className = 'eats-card';
+  card.innerHTML = `
+    <figure class="eats-img">
+      <img src="${e.img}" alt="${e.cn} ${e.en} ｜ NT$${e.price} ｜ ${e.spicy} ｜ ${e.tagZh}" loading="lazy"
+           onerror="this.parentElement.classList.add('img-missing'); this.style.display='none';">
+      <figcaption class="eats-caption-fallback">
+        <h3>${e.cn}</h3>
+        <p class="en">${e.en}</p>
+        <p class="price"><span class="currency">NT$</span>${e.price}</p>
+        <span class="spicy">${e.spicy}</span>
+        <p class="tag-zh">${e.tagZh}</p>
+        <p class="tag-en">${e.tagEn}</p>
+        <p class="note-zh">${e.noteZh}</p>
+        <p class="note-en">${e.noteEn}</p>
+      </figcaption>
+    </figure>
+    <div class="sr-only">
+      <h3>${e.cn} ｜ ${e.en}</h3>
+      <p>NT$${e.price} ｜ ${e.spicy}</p>
+      <p>${e.tagZh} ｜ ${e.tagEn}</p>
+      <p>${e.noteZh} ｜ ${e.noteEn}</p>
+    </div>
+  `;
+  egrid.appendChild(card);
+});
+
+const cgrid = document.getElementById('cocktail-grid');
+cocktails.forEach((c) => {
+  const article = document.createElement('article');
+  article.className = 'cocktail';
+  article.innerHTML = `
+    <div class="head" onclick="toggleCard(this)">
+      <h3>${c.cn}<span class="en">${c.en}</span></h3>
+      <div class="stat">
+        <span class="vol">${c.vol} ｜ ABV ${c.abv}</span>
+        <span class="price">NT$ ${c.price}</span>
+      </div>
+      <div class="taste">
+        <div>酸 ${stars(c.taste.acid)}</div>
+        <div>甜 ${stars(c.taste.sweet)}</div>
+        <div>酒感 ${stars(c.taste.alc)}</div>
+        <div>濃度 ${stars(c.taste.body)}</div>
+      </div>
+      <div class="toggle-hint">STORY</div>
+    </div>
+    <div class="story">
+      <div class="story-inner"><p>${c.story}</p></div>
+    </div>
+  `;
+  cgrid.appendChild(article);
+});
+
+const sgrid = document.getElementById('soda-grid');
+sodas.forEach((s) => {
+  const card = document.createElement('div');
+  card.className = 'simple-card';
+  card.innerHTML = `
+    <div class="name">${s.cn}<span class="en">${s.en}</span></div>
+    <div class="meta"><span class="price">NT$ 120</span></div>
+  `;
+  sgrid.appendChild(card);
+});
+
+// ============ INTERACTION ============
+function toggleCard(headerEl) {
+  const card = headerEl.parentElement;
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('article.cocktail.open').forEach(c => {
+    if (c !== card) c.classList.remove('open');
+  });
+  card.classList.toggle('open', !wasOpen);
+}
+</script>
+
+</body>
+</html>
