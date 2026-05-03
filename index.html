@@ -39,10 +39,19 @@
       "dayOfWeek": ["Tuesday","Wednesday","Friday","Saturday","Sunday"],
       "opens": "18:07", "closes": "00:07" }
   ],
+  "telephone": "+886-963-059-889",
+  "hasMap": "https://maps.app.goo.gl/Z4W8LbQ4JX9krFeu7",
+  "sameAs": [
+    "https://www.instagram.com/container_no.7_penghu/",
+    "https://maps.app.goo.gl/Z4W8LbQ4JX9krFeu7"
+  ],
   "parentOrganization": {
     "@type": "Organization",
     "name": "依山水有限公司",
-    "url": "https://bethreewater.github.io/c7-bar/"
+    "taxID": "96160460",
+    "url": "https://bethreewater.github.io/c7-bar/",
+    "telephone": "+886-963-059-889",
+    "sameAs": ["https://www.instagram.com/container_no.7_penghu/"]
   },
   "hasMenu": {
     "@type": "Menu",
@@ -802,6 +811,19 @@ section.visit {
   color: var(--gold);
 }
 
+.inline-link {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-soft);
+  padding-bottom: 1px;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.inline-link:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
 /* === FOOTER === */
 footer.site {
   text-align: center;
@@ -855,19 +877,25 @@ footer.site .copy {
 }
 
 footer.site .social {
-  margin-top: 16px;
-  font-size: 10px;
-  letter-spacing: 0.24em;
-  padding-left: 0.24em;
+  margin: 16px 0 12px;
+  font-size: 10.5px;
+  letter-spacing: 0.32em;
+  padding-left: 0.32em;
+  font-family: var(--serif);
 }
 
 footer.site .social a {
-  margin: 0 8px;
-  color: var(--ink-mute);
+  margin: 0 4px;
+  color: var(--gold);
   transition: color 0.15s;
 }
 
-footer.site .social a:hover { color: var(--gold); }
+footer.site .social a:hover { color: var(--ink); }
+
+footer.site .social .dot {
+  color: var(--ink-faint);
+  margin: 0 4px;
+}
 
 </style>
 </head>
@@ -939,8 +967,12 @@ footer.site .social a:hover { color: var(--gold); }
       <p class="label">ADDRESS ｜ 地址</p>
       <p class="value">880 澎湖縣馬公市 11015 號</p>
     </div>
+    <div class="row">
+      <p class="label">CONTACT ｜ 訂位</p>
+      <p class="value"><a class="inline-link" href="tel:+886963059889">0963 - 059 - 889</a></p>
+    </div>
     <a class="maps-link"
-       href="https://www.google.com/maps/search/?api=1&query=%E4%B8%83%E8%99%9F%E8%B2%A8%E6%AB%83+%E6%BE%8E%E6%B9%96%E9%A6%AC%E5%85%AC"
+       href="https://maps.app.goo.gl/Z4W8LbQ4JX9krFeu7"
        target="_blank" rel="noopener">GOOGLE MAPS →</a>
   </div>
 </section>
@@ -965,14 +997,20 @@ footer.site .social a:hover { color: var(--gold); }
     <div class="about-row">
       <p class="label">COMPANY ｜ 經營主體</p>
       <p class="company-name">依山水有限公司</p>
+      <p class="about-text">統一編號：96160460</p>
       <p class="about-text">本網站為依山水有限公司所經營之 CONTAINER NO.7（七號貨櫃）官方網站。</p>
     </div>
 
     <div class="about-row">
       <p class="label">CONTACT ｜ 聯絡方式</p>
+      <p class="about-text">電話訂位：<a class="inline-link" href="tel:+886963059889">0963-059-889</a></p>
       <p class="about-text">店面地址：880 澎湖縣馬公市 11015 號</p>
       <p class="about-text">營業時間：每日 18:07—00:07，週一・四公休</p>
-      <p class="about-text">現場服務 ｜ 詳細訂位請至 Google Maps 留言</p>
+      <p class="about-text">
+        <a class="inline-link" href="https://maps.app.goo.gl/Z4W8LbQ4JX9krFeu7" target="_blank" rel="noopener">Google Maps 位置</a>
+        ｜
+        <a class="inline-link" href="https://www.instagram.com/container_no.7_penghu/" target="_blank" rel="noopener">Instagram</a>
+      </p>
     </div>
   </div>
 </section>
@@ -981,12 +1019,17 @@ footer.site .social a:hover { color: var(--gold); }
 <footer class="site">
   <p class="mark">CONTAINER NO.7</p>
   <p class="brand-line">七號貨櫃 ｜ 澎湖馬公露天餐酒吧</p>
-  <p class="company-line">經營主體 ｜ 依山水有限公司</p>
+  <p class="company-line">經營主體 ｜ 依山水有限公司 ｜ 統一編號 96160460</p>
   <p class="address-line">880 澎湖縣馬公市 11015 號 ｜ 18:07—00:07（週一・四公休）</p>
-  <p class="copy">© 2026 依山水有限公司 ｜ All rights reserved.</p>
-  <p class="social">
-    <!-- 待補社群連結：IG / Threads / Google Maps -->
+  <p class="address-line">
+    <a class="inline-link" href="tel:+886963059889">0963-059-889</a>
   </p>
+  <p class="social">
+    <a href="https://www.instagram.com/container_no.7_penghu/" target="_blank" rel="noopener">INSTAGRAM</a>
+    <span class="dot">·</span>
+    <a href="https://maps.app.goo.gl/Z4W8LbQ4JX9krFeu7" target="_blank" rel="noopener">GOOGLE MAPS</a>
+  </p>
+  <p class="copy">© 2026 依山水有限公司 ｜ All rights reserved.</p>
 </footer>
 
 <script>
