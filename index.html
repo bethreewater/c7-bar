@@ -6,12 +6,58 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#0A0A0A">
-<meta name="description" content="七號貨櫃 ｜ 澎湖馬公海邊的單點貨櫃調酒酒吧。每日 18:07—00:07，週一・四公休。">
-<meta property="og:title" content="七號貨櫃 ｜ Container No.7">
-<meta property="og:description" content="海邊 chill 一下。澎湖馬公，每日 18:07—00:07。">
-<meta property="og:type" content="website">
+<meta name="description" content="CONTAINER NO.7（七號貨櫃）為依山水有限公司於澎湖馬公經營之露天餐酒吧，提供現場餐飲服務：主食餐點、特色調飲、下酒小食與露天用餐體驗。每日 18:07—00:07，週一・四公休。">
+<meta property="og:title" content="CONTAINER NO.7 ｜ 七號貨櫃 ｜ 依山水有限公司">
+<meta property="og:description" content="澎湖馬公露天餐酒吧。主食、調飲、氣泡飲。每日 18:07—00:07。">
+<meta property="og:type" content="restaurant">
 <meta property="og:locale" content="zh_TW">
-<title>七號貨櫃 ｜ Container No.7 ｜ 澎湖海邊 chill 一下</title>
+<meta property="og:url" content="https://bethreewater.github.io/c7-bar/">
+<meta property="og:image" content="https://bethreewater.github.io/c7-bar/img/logo.png">
+<title>CONTAINER NO.7 ｜ 七號貨櫃 ｜ 依山水有限公司 ｜ 澎湖馬公露天餐酒吧</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "@id": "https://bethreewater.github.io/c7-bar/",
+  "name": "CONTAINER NO.7",
+  "alternateName": ["七號貨櫃", "Container No.7"],
+  "description": "澎湖馬公海邊的露天餐酒吧，提供現場餐飲服務：主食、特色調飲、下酒小食與露天用餐體驗。",
+  "image": "https://bethreewater.github.io/c7-bar/img/logo.png",
+  "url": "https://bethreewater.github.io/c7-bar/",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "11015 號",
+    "addressLocality": "馬公市",
+    "addressRegion": "澎湖縣",
+    "postalCode": "880",
+    "addressCountry": "TW"
+  },
+  "servesCuisine": ["Cocktails", "Taiwanese", "Pub Food", "Beverages"],
+  "priceRange": "NT$120 – NT$400",
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday","Wednesday","Friday","Saturday","Sunday"],
+      "opens": "18:07", "closes": "00:07" }
+  ],
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "依山水有限公司",
+    "url": "https://bethreewater.github.io/c7-bar/"
+  },
+  "hasMenu": {
+    "@type": "Menu",
+    "hasMenuSection": [
+      { "@type": "MenuSection", "name": "主食 / Eats",
+        "hasMenuItem": [
+          { "@type": "MenuItem", "name": "秘藏牛肉麵 Secret Recipe Braised Beef Noodles", "offers": { "@type": "Offer", "price": "280", "priceCurrency": "TWD" } },
+          { "@type": "MenuItem", "name": "秘藏牛肉飯 Secret Recipe Braised Beef Rice", "offers": { "@type": "Offer", "price": "280", "priceCurrency": "TWD" } }
+        ] },
+      { "@type": "MenuSection", "name": "雞尾酒 / Cocktails (NT$300–400)" },
+      { "@type": "MenuSection", "name": "好氣氣泡飲 / Angry Soda (NT$120, 無酒精)" }
+    ]
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -682,6 +728,80 @@ section.visit {
   color: var(--bg);
 }
 
+/* === ABOUT === */
+.about {
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+
+.about-card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 40px 32px;
+}
+
+.about-row {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.about-row:first-child { padding-top: 0; }
+.about-row:last-child { padding-bottom: 0; border-bottom: none; }
+
+.about-row .label {
+  font-family: var(--serif);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  color: var(--gold);
+  margin-bottom: 14px;
+  padding-left: 0.32em;
+}
+
+.about-row .company-name {
+  font-family: var(--serif);
+  font-size: clamp(20px, 4.4vw, 26px);
+  letter-spacing: 0.12em;
+  color: var(--ink);
+  margin-bottom: 12px;
+  font-weight: 400;
+  padding-left: 0.12em;
+}
+
+.about-row .about-text {
+  font-family: var(--sans);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  line-height: 1.8;
+  margin-bottom: 6px;
+}
+
+.about-row .about-list {
+  margin-top: 12px;
+  padding-left: 18px;
+  list-style: none;
+}
+
+.about-row .about-list li {
+  position: relative;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink-mute);
+  line-height: 2;
+  padding-left: 14px;
+}
+
+.about-row .about-list li::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+
 /* === FOOTER === */
 footer.site {
   text-align: center;
@@ -692,17 +812,46 @@ footer.site {
 }
 
 footer.site .mark {
-  font-size: 10px;
+  font-family: var(--serif);
+  font-size: 12px;
   letter-spacing: 0.5em;
-  color: var(--gold);
-  margin-bottom: 8px;
+  color: var(--ink);
+  margin-bottom: 10px;
   padding-left: 0.5em;
+}
+
+footer.site .brand-line {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  color: var(--ink-mute);
+  margin-bottom: 6px;
+  padding-left: 0.24em;
+}
+
+footer.site .company-line {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  color: var(--ink);
+  margin-bottom: 6px;
+  padding-left: 0.24em;
+}
+
+footer.site .address-line {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  color: var(--ink-mute);
+  margin-bottom: 14px;
+  padding-left: 0.16em;
 }
 
 footer.site .copy {
   font-size: 10px;
   letter-spacing: 0.18em;
   padding-left: 0.18em;
+  color: var(--ink-faint);
 }
 
 footer.site .social {
@@ -750,6 +899,7 @@ footer.site .social a:hover { color: var(--gold); }
   <a href="#cocktails">雞尾酒</a>
   <a href="#mocktail">好氣</a>
   <a href="#visit">前來</a>
+  <a href="#about">關於</a>
 </nav>
 
 <!-- ============ EATS ============ -->
@@ -795,10 +945,45 @@ footer.site .social a:hover { color: var(--gold); }
   </div>
 </section>
 
+<!-- ============ ABOUT / 公司資訊 ============ -->
+<section id="about" class="about">
+  <h2 class="section-title">ABOUT<span class="zh">關於</span></h2>
+  <div class="section-rule"></div>
+
+  <div class="about-card">
+    <div class="about-row">
+      <p class="label">SERVICES ｜ 服務內容</p>
+      <p class="about-text">本店提供現場餐飲服務，包含主食餐點、特色調飲、無酒精氣泡飲與露天餐酒吧用餐體驗。</p>
+      <ul class="about-list">
+        <li>主食餐點（秘藏牛肉麵、秘藏牛肉飯）</li>
+        <li>手作特色調飲（10 款雞尾酒）</li>
+        <li>無酒精氣泡飲（好氣系列 6 款）</li>
+        <li>露天用餐體驗</li>
+      </ul>
+    </div>
+
+    <div class="about-row">
+      <p class="label">COMPANY ｜ 經營主體</p>
+      <p class="company-name">依山水有限公司</p>
+      <p class="about-text">本網站為依山水有限公司所經營之 CONTAINER NO.7（七號貨櫃）官方網站。</p>
+    </div>
+
+    <div class="about-row">
+      <p class="label">CONTACT ｜ 聯絡方式</p>
+      <p class="about-text">店面地址：880 澎湖縣馬公市 11015 號</p>
+      <p class="about-text">營業時間：每日 18:07—00:07，週一・四公休</p>
+      <p class="about-text">現場服務 ｜ 詳細訂位請至 Google Maps 留言</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FOOTER ============ -->
 <footer class="site">
   <p class="mark">CONTAINER NO.7</p>
-  <p class="copy">© 七號貨櫃 ｜ 澎湖馬公</p>
+  <p class="brand-line">七號貨櫃 ｜ 澎湖馬公露天餐酒吧</p>
+  <p class="company-line">經營主體 ｜ 依山水有限公司</p>
+  <p class="address-line">880 澎湖縣馬公市 11015 號 ｜ 18:07—00:07（週一・四公休）</p>
+  <p class="copy">© 2026 依山水有限公司 ｜ All rights reserved.</p>
   <p class="social">
     <!-- 待補社群連結：IG / Threads / Google Maps -->
   </p>
