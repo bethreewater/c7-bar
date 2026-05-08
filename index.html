@@ -542,14 +542,27 @@ article.cocktail .taste {
   padding-left: 0.1em;
 }
 
-article.cocktail .taste .star {
-  color: var(--gold);
+article.cocktail .taste .rating {
+  display: inline-flex;
+  position: relative;
   letter-spacing: 0.05em;
   margin-left: 4px;
+  font-family: inherit;
+  line-height: 1;
 }
 
-article.cocktail .taste .dim {
+article.cocktail .taste .rating-bg {
   color: #2A2A2A;
+}
+
+article.cocktail .taste .rating-fg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--gold);
+  overflow: hidden;
+  white-space: nowrap;
+  letter-spacing: 0.05em;
 }
 
 article.cocktail .story {
@@ -1235,13 +1248,13 @@ const cocktails = [
   {
     cn: "CASINO", en: "Casino",
     vol: "130ml", abv: "23%", price: 350,
-    taste: { acid: 2, sweet: 4, alc: 4, body: 4 },
+    taste: { acid: 2, sweet: 3, alc: 4, body: 4 },
     story: "第一口清新的風味，迎來中韻淡淡的草本香，接著一鼓作氣打出好牌——讓你到家還默默回味著這勝利尾韻。"
   },
   {
     cn: "洛神賦", en: "Ode of the River Goddess",
     vol: "90ml", abv: "12%", price: 300,
-    taste: { acid: 4, sweet: 2, alc: 1, body: 3 },
+    taste: { acid: 4, sweet: 3.5, alc: 1, body: 3 },
     story: "洛神花是紅色的，是很溫暖的紅色，是愛的顏色，是在鄉愁時陪伴我的顏色。\n洛神花是家，是母親，是暖冬時在沙發上，冒著煙的馬克杯中，能暖身子的一杯茶。"
   },
   {
@@ -1253,7 +1266,7 @@ const cocktails = [
   {
     cn: "白日夢", en: "Daydream",
     vol: "110ml", abv: "18%", price: 350,
-    taste: { acid: 1, sweet: 3, alc: 3, body: 4 },
+    taste: { acid: 1, sweet: 4, alc: 3, body: 4 },
     story: "午後三點，太陽斜斜地落在桌邊。\n沒在做什麼，也沒有想做什麼。\n葡萄與櫻桃的香氣繞過來，像一段沒打算結束的慢板，把人從這裡，輕輕推到夢的那邊。"
   },
   {
@@ -1271,7 +1284,7 @@ const cocktails = [
   {
     cn: "青梅竹馬", en: "Childhood Sweethearts",
     vol: "95ml", abv: "16%", price: 350,
-    taste: { acid: 2, sweet: 5, alc: 3, body: 3 },
+    taste: { acid: 2, sweet: 3.5, alc: 3, body: 3 },
     story: "不是每個青梅竹馬最後都在一起。\n但那個夏天的午後、那條彎彎的小巷、那聲喊你名字的口吻，還是會被收進記憶最暖的角落。\n青蘋果是初遇的酸，梅酒是時間的甜，白蘭地是後來才懂的溫度。"
   },
   {
@@ -1293,12 +1306,8 @@ const sodas = [
 
 // ============ RENDER ============
 function stars(n, total = 5) {
-  let out = '<span class="star">';
-  for (let i = 0; i < n; i++) out += '★';
-  out += '</span><span class="dim">';
-  for (let i = n; i < total; i++) out += '★';
-  out += '</span>';
-  return out;
+  const pct = Math.max(0, Math.min(100, (n / total) * 100));
+  return `<span class="rating"><span class="rating-bg">${'★'.repeat(total)}</span><span class="rating-fg" style="width:${pct}%">${'★'.repeat(total)}</span></span>`;
 }
 
 const egrid = document.getElementById('eats-grid');
