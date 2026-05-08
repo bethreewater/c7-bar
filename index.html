@@ -1069,31 +1069,31 @@ const cocktails = [
   {
     cn: "太陽神", en: "Apollo",
     vol: "110ml", abv: "20%", price: 300,
-    taste: { acid: 2, sweet: 3, alc: 3, body: 3 },
+    taste: { acid: 2, sweet: 3, alc: 4, body: 3 },
     story: "使用澎湖當地仙人掌酒，搭配紅酒襯托果香香氣，結合龍舌蘭清新草本香。簡單不失層次，非常適合在夏天的海灘飲用。"
   },
   {
     cn: "CASINO", en: "Casino",
     vol: "130ml", abv: "23%", price: 350,
-    taste: { acid: 2, sweet: 4, alc: 3, body: 3 },
+    taste: { acid: 2, sweet: 5, alc: 4, body: 4 },
     story: "第一口清新的風味，迎來中韻淡淡的草本香，接著一鼓作氣打出好牌——讓你到家還默默回味著這勝利尾韻。"
   },
   {
     cn: "洛神賦", en: "Ode of the River Goddess",
     vol: "90ml", abv: "12%", price: 300,
-    taste: { acid: 3, sweet: 2, alc: 1, body: 2 },
+    taste: { acid: 4, sweet: 2, alc: 1, body: 3 },
     story: "洛神花是紅色的，是很溫暖的紅色，是愛的顏色，是在鄉愁時陪伴我的顏色。\n洛神花是家，是母親，是暖冬時在沙發上，冒著煙的馬克杯中，能暖身子的一杯茶。"
   },
   {
     cn: "性轉山格利亞", en: "Sexual Transformation Sangria",
     vol: "145ml", abv: "11%", price: 350,
-    taste: { acid: 2, sweet: 2, alc: 1, body: 2 },
+    taste: { acid: 3, sweet: 2, alc: 1, body: 2 },
     story: "傳統的 Sangria 躺在西班牙午後的庭院，輕盈、果香、好入口。\n我把白蘭地和香艾酒推進去，它就站起來了——\n同樣的紅酒、柳橙、莓果，換個骨架，就是另一個人。"
   },
   {
     cn: "白日夢", en: "Daydream",
     vol: "110ml", abv: "18%", price: 350,
-    taste: { acid: 1, sweet: 3, alc: 3, body: 3 },
+    taste: { acid: 1, sweet: 3, alc: 3, body: 4 },
     story: "午後三點，太陽斜斜地落在桌邊。\n沒在做什麼，也沒有想做什麼。\n葡萄與櫻桃的香氣繞過來，像一段沒打算結束的慢板，把人從這裡，輕輕推到夢的那邊。"
   },
   {
@@ -1105,19 +1105,19 @@ const cocktails = [
   {
     cn: "水手畢夏普", en: "Seaman Bishop",
     vol: "140ml", abv: "25%", price: 400,
-    taste: { acid: 3, sweet: 3, alc: 4, body: 4 },
+    taste: { acid: 3, sweet: 3, alc: 5, body: 5 },
     story: "大海上沒有教堂，水手有水手的祈禱。\n蘭姆酒是甲板、琴酒是風、梅酒是岸上的記憶，百香果是熱帶夜裡那束突然出現的光。\n一杯下去你就懂——為什麼遠航的人總要對著星星說話。"
   },
   {
     cn: "青梅竹馬", en: "Childhood Sweethearts",
     vol: "95ml", abv: "16%", price: 350,
-    taste: { acid: 2, sweet: 4, alc: 2, body: 3 },
+    taste: { acid: 2, sweet: 5, alc: 3, body: 3 },
     story: "不是每個青梅竹馬最後都在一起。\n但那個夏天的午後、那條彎彎的小巷、那聲喊你名字的口吻，還是會被收進記憶最暖的角落。\n青蘋果是初遇的酸，梅酒是時間的甜，白蘭地是後來才懂的溫度。"
   },
   {
     cn: "女王蜂", en: "Queen Bee",
     vol: "100ml", abv: "28%", price: 400,
-    taste: { acid: 2, sweet: 3, alc: 4, body: 4 },
+    taste: { acid: 2, sweet: 3, alc: 5, body: 5 },
     story: "不是每座山都需要被征服。\n有些山就站在那裡，自成風景。\n四玫瑰是她肩上的盔甲，巨峰葡萄是她裙擺的紫色，你只能仰望——\n然後喝下這口烈，記住自己曾經這樣抬頭過。"
   }
 ];
@@ -1132,7 +1132,7 @@ const sodas = [
 ];
 
 // ============ RENDER ============
-function stars(n, total = 4) {
+function stars(n, total = 5) {
   let out = '<span class="star">';
   for (let i = 0; i < n; i++) out += '★';
   out += '</span><span class="dim">';
