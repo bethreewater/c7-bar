@@ -209,6 +209,72 @@ a { color: inherit; text-decoration: none; }
   color: var(--ink-mute);
 }
 
+/* === STATUS PILL === */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 7px 18px 7px 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--ink-mute);
+  padding-left: calc(14px + 0.22em);
+  transition: border-color 0.5s, color 0.5s;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+  flex-shrink: 0;
+  transition: background 0.5s;
+}
+
+.status-pill.open {
+  border-color: rgba(123, 192, 142, 0.4);
+  color: #C5DDC8;
+}
+
+.status-pill.open .status-dot {
+  background: #7BC08E;
+  box-shadow: 0 0 0 0 rgba(123, 192, 142, 0.7);
+  animation: status-pulse 2.4s ease-out infinite;
+}
+
+.status-pill.soon {
+  border-color: rgba(201, 169, 97, 0.4);
+  color: var(--gold);
+}
+
+.status-pill.soon .status-dot {
+  background: var(--gold);
+  box-shadow: 0 0 0 0 rgba(201, 169, 97, 0.7);
+  animation: status-pulse-soon 2s ease-out infinite;
+}
+
+.status-pill.closed {
+  border-color: rgba(255,255,255,0.08);
+  color: var(--ink-faint);
+}
+
+@keyframes status-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(123, 192, 142, 0.7); }
+  60%  { box-shadow: 0 0 0 9px rgba(123, 192, 142, 0); }
+  100% { box-shadow: 0 0 0 0   rgba(123, 192, 142, 0); }
+}
+
+@keyframes status-pulse-soon {
+  0%   { box-shadow: 0 0 0 0   rgba(201, 169, 97, 0.7); }
+  60%  { box-shadow: 0 0 0 8px rgba(201, 169, 97, 0); }
+  100% { box-shadow: 0 0 0 0   rgba(201, 169, 97, 0); }
+}
+
 .scroll-hint {
   position: absolute;
   bottom: 24px;
@@ -917,6 +983,10 @@ footer.site .social .dot {
   <div class="hero-meta">
     <span class="hours">18:07 — 00:07</span>
     <span class="closed">每週一・四 公休</span>
+    <div class="status-pill" id="status-pill" aria-live="polite">
+      <span class="status-dot"></span>
+      <span class="status-label" id="status-label">載入中…</span>
+    </div>
   </div>
   <p class="scroll-hint">SCROLL</p>
 </header>
@@ -1206,6 +1276,83 @@ sodas.forEach((s) => {
   `;
   sgrid.appendChild(card);
 });
+
+// ============ LIVE STATUS ============
+// 營業時段：每日 18:07 — 翌日 00:07 ｜ 週一(1)、週四(4) 公休
+// 注意：00:00–00:07 屬於「前一天」的延伸營業（看前一天是否公休）
+(function liveStatus() {
+  const OPEN_START = 18 * 60 + 7;  // 1087 (18:07)
+  const OPEN_END   = 7;             // 7    (00:07 of next day)
+  const CLOSED_DAYS = new Set([1, 4]);
+
+  function fmtDuration(mins) {
+    if (mins < 60) return `${mins} 分鐘`;
+    const h = Math.floor(mins / 60);
+    const m = mins % 60;
+    if (h < 24) return m > 0 ? `${h} 小時 ${m} 分` : `${h} 小時`;
+    const d = Math.floor(h / 24);
+    const rh = h % 24;
+    return rh > 0 ? `${d} 天 ${rh} 小時` : `${d} 天`;
+  }
+
+  function getStatus(now = new Date()) {
+    const day = now.getDay();
+    const totalMin = now.getHours() * 60 + now.getMinutes();
+
+    // Case A: 凌晨 00:00–00:07，前一天的延伸營業
+    if (totalMin < OPEN_END) {
+      const yesterday = (day + 6) % 7;
+      if (!CLOSED_DAYS.has(yesterday)) {
+        const minsLeft = OPEN_END - totalMin;
+        return {
+          state: minsLeft <= 30 ? 'soon' : 'open',
+          label: `現在營業中 · ${fmtDuration(minsLeft)}後打烊`
+        };
+      }
+    }
+    // Case B: 晚上 18:07 之後，今天是否營業
+    else if (totalMin >= OPEN_START) {
+      if (!CLOSED_DAYS.has(day)) {
+        const minsLeft = (24 * 60 + OPEN_END) - totalMin;
+        return {
+          state: minsLeft <= 30 ? 'soon' : 'open',
+          label: `現在營業中 · ${fmtDuration(minsLeft)}後打烊`
+        };
+      }
+    }
+
+    // Case C: 打烊中，找下個營業日的 18:07
+    for (let i = 0; i < 8; i++) {
+      const checkDay = (day + i) % 7;
+      if (CLOSED_DAYS.has(checkDay)) continue;
+      let minsTo;
+      if (i === 0) {
+        if (totalMin >= OPEN_START) continue;  // 已過今晚開門時間（不該到這 case，但保險）
+        minsTo = OPEN_START - totalMin;
+      } else {
+        minsTo = i * 24 * 60 + OPEN_START - totalMin;
+      }
+      return {
+        state: minsTo <= 60 ? 'soon' : 'closed',
+        label: `現在公休 · ${fmtDuration(minsTo)}後開門`
+      };
+    }
+    return { state: 'closed', label: '現在公休' };
+  }
+
+  function update() {
+    const pill = document.getElementById('status-pill');
+    const label = document.getElementById('status-label');
+    if (!pill || !label) return;
+    const { state, label: text } = getStatus();
+    pill.classList.remove('open', 'soon', 'closed');
+    pill.classList.add(state);
+    label.textContent = text;
+  }
+
+  update();
+  setInterval(update, 60_000);
+})();
 
 // ============ INTERACTION ============
 function toggleCard(headerEl) {
