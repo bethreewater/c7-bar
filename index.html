@@ -62,7 +62,7 @@
           { "@type": "MenuItem", "name": "秘藏牛肉飯 Secret Recipe Braised Beef Rice", "offers": { "@type": "Offer", "price": "280", "priceCurrency": "TWD" } }
         ] },
       { "@type": "MenuSection", "name": "雞尾酒 / Cocktails (NT$300–400)" },
-      { "@type": "MenuSection", "name": "好氣氣泡飲 / Angry Soda (NT$120, 無酒精)" }
+      { "@type": "MenuSection", "name": "好氣氣泡飲 / Angry Soda (NT$200–250, 無酒精)" }
     ]
   }
 }
@@ -1370,12 +1370,14 @@ const cocktails = [
 ];
 
 const sodas = [
-  { cn: "巨峰葡萄好氣", en: "Angry Kyoho Grape" },
-  { cn: "仙人掌好氣",   en: "Angry Cactus" },
-  { cn: "覆盆莓好氣",   en: "Angry Raspberry" },
-  { cn: "葡萄柚好氣",   en: "Angry Grapefruit" },
-  { cn: "百香好氣",     en: "Angry Passion Fruit" },
-  { cn: "桑椹好氣",     en: "Angry Mulberry" }
+  { cn: "巨峰葡萄好氣", en: "Angry Kyoho Grape",   price: 200 },
+  { cn: "仙人掌好氣",   en: "Angry Cactus",        price: 200 },
+  { cn: "覆盆莓好氣",   en: "Angry Raspberry",     price: 200 },
+  { cn: "葡萄柚好氣",   en: "Angry Grapefruit",    price: 200 },
+  { cn: "百香好氣",     en: "Angry Passion Fruit", price: 200 },
+  { cn: "桑椹好氣",     en: "Angry Mulberry",      price: 200 },
+  { cn: "綜合好氣",     en: "Angry Mix",           price: 200 },
+  { cn: "特調好氣",     en: "Angry Special",       price: 250 }
 ];
 
 // ============ RENDER ============
@@ -1453,7 +1455,7 @@ sodas.forEach((s) => {
   card.className = 'simple-card';
   card.innerHTML = `
     <div class="name">${s.cn}<span class="en">${s.en}</span></div>
-    <div class="meta"><span class="price">NT$ 120</span></div>
+    <div class="meta"><span class="price">NT$ ${s.price}</span></div>
   `;
   sgrid.appendChild(card);
 });
