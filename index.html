@@ -663,6 +663,10 @@ article.cocktail .ingredients .ing-en {
   letter-spacing: 0.04em;
 }
 
+article.cocktail .ingredients .ing-item {
+  white-space: nowrap;
+}
+
 article.cocktail .ingredients .ing-en b {
   color: #8A8A82;
 }
@@ -1517,8 +1521,8 @@ cocktails.forEach((c) => {
       </div>
       <div class="ingredients">
         <span class="ing-label">成分 / Ingredients</span>
-        <span class="ing-list">${c.ingredients.map((g,i)=>i===0?`<b>${g}</b>`:g).join(' · ')}</span>
-        <span class="ing-list ing-en">${c.ingredientsEn.map((g,i)=>i===0?`<b>${g}</b>`:g).join(' · ')}</span>
+        <span class="ing-list">${c.ingredients.map((g,i,a)=>`<span class="ing-item">${i===0?`<b>${g}</b>`:g}${i<a.length-1?' ·':''}</span>`).join(' ')}</span>
+        <span class="ing-list ing-en">${c.ingredientsEn.map((g,i,a)=>`<span class="ing-item">${i===0?`<b>${g}</b>`:g}${i<a.length-1?' ·':''}</span>`).join(' ')}</span>
       </div>
       <div class="toggle-hint">STORY</div>
     </div>
