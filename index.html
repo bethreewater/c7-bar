@@ -709,12 +709,15 @@ article.cocktail.open .toggle-hint { color: var(--gold); }
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
-  article.cocktail .taste,
   article.cocktail .ingredients {
     display: none;
   }
-  article.cocktail.open .taste { display: flex; }
   article.cocktail.open .ingredients { display: block; }
+  article.cocktail .taste { margin-top: 11px; gap: 6px; }
+  article.cocktail .taste em { display: none; }
+  article.cocktail .taste .t-name { min-width: 46px; }
+  article.cocktail.open .taste em { display: inline; }
+  article.cocktail.open .taste .t-name { min-width: 98px; }
   article.cocktail.open { grid-column: 1 / -1; }
   article.cocktail.open .cocktail-img { aspect-ratio: 16 / 10; }
   article.cocktail .head { padding: 13px 13px 14px; }
@@ -731,12 +734,12 @@ article.cocktail.open .toggle-hint { color: var(--gold); }
 /* === EATS === */
 .eats-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
 }
 
 @media (min-width: 720px) {
-  .eats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .eats-grid { gap: 20px; }
 }
 
 .eats-card {
