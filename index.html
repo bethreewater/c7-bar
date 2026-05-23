@@ -703,6 +703,31 @@ article.cocktail .toggle-hint {
 
 article.cocktail.open .toggle-hint { color: var(--gold); }
 
+/* 手機：雞尾酒 2 欄精簡卡片，點開展開詳情並跨整行 */
+@media (max-width: 639px) {
+  .cocktail-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  article.cocktail .taste,
+  article.cocktail .ingredients {
+    display: none;
+  }
+  article.cocktail.open .taste { display: flex; }
+  article.cocktail.open .ingredients { display: block; }
+  article.cocktail.open { grid-column: 1 / -1; }
+  article.cocktail.open .cocktail-img { aspect-ratio: 16 / 10; }
+  article.cocktail .head { padding: 13px 13px 14px; }
+  article.cocktail h3 { font-size: 16px; }
+  article.cocktail h3 .en { font-size: 8px; letter-spacing: 0.18em; margin-top: 3px; }
+  article.cocktail .stat { margin-top: 9px; padding-top: 9px; justify-content: flex-start; }
+  article.cocktail .stat .vol { display: none; }
+  article.cocktail .stat .price { font-size: 15px; white-space: nowrap; }
+  article.cocktail.open .stat { justify-content: space-between; }
+  article.cocktail.open .stat .vol { display: inline; font-size: 9.5px; letter-spacing: 0.08em; }
+  article.cocktail .toggle-hint { padding: 10px 0 2px; }
+}
+
 /* === EATS === */
 .eats-grid {
   display: grid;
