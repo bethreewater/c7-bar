@@ -599,7 +599,7 @@ article.cocktail .story {
 }
 
 article.cocktail.open .story {
-  max-height: 600px;
+  max-height: 1400px;
 }
 
 article.cocktail .story-inner {
@@ -642,6 +642,39 @@ article.cocktail .ingredients .ing-list {
 article.cocktail .ingredients .ing-list b {
   color: var(--ink);
   font-weight: 400;
+}
+
+article.cocktail .ingredients .ing-en {
+  display: block;
+  margin-top: 5px;
+  color: #565650;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+}
+
+article.cocktail .ingredients .ing-en b {
+  color: #8A8A82;
+}
+
+article.cocktail .taste em {
+  font-style: normal;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin: 0 3px 0 1px;
+}
+
+article.cocktail .story-en {
+  margin-top: 16px;
+  padding-top: 15px;
+  border-top: 1px solid var(--line-soft);
+  color: #8E8E86;
+  font-style: italic;
+  font-size: 12.5px;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  white-space: pre-line;
 }
 
 article.cocktail .toggle-hint {
@@ -1004,6 +1037,16 @@ section.visit {
   margin-bottom: 6px;
 }
 
+.about-row .about-text-en {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  line-height: 1.6;
+  margin-top: -2px;
+  margin-bottom: 12px;
+}
+
 .about-row .about-list {
   margin-top: 12px;
   padding-left: 18px;
@@ -1162,7 +1205,7 @@ footer.site .social .dot {
   <h2 class="section-title">EATS<span class="zh">主食</span></h2>
   <div class="section-rule"></div>
   <div class="eats-grid" id="eats-grid"></div>
-  <p class="section-note">慢燉入味 ｜ 秘藏濃香</p>
+  <p class="section-note">慢燉入味・秘藏濃香　·　Slow-braised, deeply savory</p>
 </section>
 
 <!-- ============ COCKTAILS ============ -->
@@ -1177,7 +1220,7 @@ footer.site .social .dot {
   <h2 class="section-title">ANGRY SODA<span class="zh">好氣氣泡飲</span></h2>
   <div class="section-rule"></div>
   <div class="simple-grid" id="soda-grid"></div>
-  <p class="section-note">無酒精 ｜ 風味果醬 ＋ Soda</p>
+  <p class="section-note">無酒精・風味果醬 ＋ Soda　·　Non-alcoholic · fruit preserve + soda</p>
 </section>
 
 <!-- ============ VISIT ============ -->
@@ -1188,11 +1231,12 @@ footer.site .social .dot {
     <div class="row">
       <p class="label">HOURS ｜ 營業時間</p>
       <p class="value big">18:07 — 00:07</p>
-      <p class="value sub">週一・四 公休</p>
+      <p class="value sub">週一・四 公休　·　Daily, closed Mon &amp; Thu</p>
     </div>
     <div class="row">
       <p class="label">ADDRESS ｜ 地址</p>
       <p class="value">880 澎湖縣馬公市 11015 號</p>
+      <p class="value sub">No. 11015, Magong City, Penghu County 880, Taiwan</p>
     </div>
     <div class="row">
       <p class="label">CONTACT ｜ 訂位</p>
@@ -1213,26 +1257,30 @@ footer.site .social .dot {
     <div class="about-row">
       <p class="label">SERVICES ｜ 服務內容</p>
       <p class="about-text">本店提供現場餐飲服務，包含主食餐點、特色調飲、無酒精氣泡飲與露天餐酒吧用餐體驗。</p>
+      <p class="about-text-en">On-site dining: main dishes, signature cocktails, non-alcoholic sodas, and an open-air bar experience.</p>
       <ul class="about-list">
-        <li>主食餐點（秘藏牛肉麵、秘藏牛肉飯）</li>
-        <li>手作特色調飲（10 款雞尾酒）</li>
-        <li>無酒精氣泡飲（好氣系列 6 款）</li>
-        <li>露天用餐體驗</li>
+        <li>主食餐點 Main dishes（秘藏牛肉麵、秘藏牛肉飯）</li>
+        <li>手作特色調飲 Signature cocktails（10 款）</li>
+        <li>無酒精氣泡飲 Non-alcoholic sodas（好氣系列 8 款）</li>
+        <li>露天用餐體驗 Open-air dining</li>
       </ul>
     </div>
 
     <div class="about-row">
       <p class="label">COMPANY ｜ 經營主體</p>
       <p class="company-name">依山水有限公司</p>
-      <p class="about-text">統一編號：96160460</p>
+      <p class="about-text-en">Yi Shan Shui Co., Ltd.</p>
+      <p class="about-text">統一編號 Tax ID：96160460</p>
       <p class="about-text">本網站為依山水有限公司所經營之 CONTAINER NO.7（七號貨櫃）官方網站。</p>
+      <p class="about-text-en">This is the official website of CONTAINER NO.7, operated by Yi Shan Shui Co., Ltd.</p>
     </div>
 
     <div class="about-row">
       <p class="label">CONTACT ｜ 聯絡方式</p>
-      <p class="about-text">電話訂位：<a class="inline-link" href="tel:+886963059889">0963-059-889</a></p>
-      <p class="about-text">店面地址：880 澎湖縣馬公市 11015 號</p>
-      <p class="about-text">營業時間：每日 18:07—00:07，週一・四公休</p>
+      <p class="about-text">電話訂位 Reservations：<a class="inline-link" href="tel:+886963059889">0963-059-889</a></p>
+      <p class="about-text">店面地址 Address：880 澎湖縣馬公市 11015 號</p>
+      <p class="about-text-en">No. 11015, Magong City, Penghu County 880, Taiwan</p>
+      <p class="about-text">營業時間 Hours：每日 18:07—00:07，週一・四公休</p>
       <p class="about-text">
         <a class="inline-link" href="https://maps.app.goo.gl/Z4W8LbQ4JX9krFeu7" target="_blank" rel="noopener">Google Maps 位置</a>
         ｜
@@ -1293,6 +1341,8 @@ const cocktails = [
     taste: { acid: 2, sweet: 4, alc: 2, body: 2 },
     img: "img/cocktails/cocktail-01-bondi.jpg",
     ingredients: ["蘭姆酒", "水蜜桃利口酒", "柑橘香甜酒", "檸檬", "蘇打"],
+    ingredientsEn: ["Rum", "Peach Liqueur", "Curaçao", "Lemon", "Soda"],
+    storyEn: "In 2017, on Bondi Beach in Australia, I met an Italian named Frenco. I first took him for a Godfather type — but the warm, talkative Frenco bought me a Sex on the Beach, probably guessing I couldn't hold my drink. Then, just like in a movie, everyone far from home ends up talking about where they came from. Frenco was no exception. Listening to his Italian-accented English, facing that blue sky and sea — it was a beautiful day.",
     story: "2017 年在澳洲邦代海灘認識一個義大利人 Frenco，原本以為很教父，但熱情又多話的 Frenco 請了我一杯性感海灘。可能以為我酒量不好，接著就像電影一樣——每個來自異鄉的人聚在一起，一定都會討論自己的家鄉。Frenco 也不意外。聽著他那義式英文，又面對那藍天碧海，真是個美好的一天。"
   },
   {
@@ -1301,6 +1351,8 @@ const cocktails = [
     taste: { acid: 2, sweet: 3, alc: 4, body: 3 },
     img: "img/cocktails/cocktail-02-apollo.jpg",
     ingredients: ["龍舌蘭", "澎湖仙人掌酒", "紅酒", "檸檬"],
+    ingredientsEn: ["Tequila", "Penghu Cactus Liqueur", "Red Wine", "Lemon"],
+    storyEn: "Made with Penghu's local cactus liqueur, red wine lifting the fruity aroma, and tequila's fresh herbal note. Simple yet layered — perfect for a summer evening by the sea.",
     story: "使用澎湖當地仙人掌酒，搭配紅酒襯托果香香氣，結合龍舌蘭清新草本香。簡單不失層次，非常適合在夏天的海灘飲用。"
   },
   {
@@ -1309,6 +1361,8 @@ const cocktails = [
     taste: { acid: 2, sweet: 3, alc: 4, body: 4 },
     img: "img/cocktails/cocktail-03-casino.jpg",
     ingredients: ["琴酒", "葡萄柚香甜酒", "君度橙酒", "甜香艾酒", "檸檬"],
+    ingredientsEn: ["Gin", "Grapefruit Liqueur", "Cointreau", "Sweet Vermouth", "Lemon"],
+    storyEn: "A crisp first sip, then a faint herbal note at the midpalate, then it plays its winning hand in one sweep — leaving you quietly savoring that victory long after you're home.",
     story: "第一口清新的風味，迎來中韻淡淡的草本香，接著一鼓作氣打出好牌——讓你到家還默默回味著這勝利尾韻。"
   },
   {
@@ -1317,6 +1371,8 @@ const cocktails = [
     taste: { acid: 4, sweet: 3.5, alc: 1, body: 3 },
     img: "img/cocktails/cocktail-04-hibiscus.jpg",
     ingredients: ["白酒", "君度橙酒", "洛神花"],
+    ingredientsEn: ["White Wine", "Cointreau", "Hibiscus"],
+    storyEn: "Hibiscus is red — a warm red, the color of love, the color that kept me company through homesickness.\nHibiscus is home, is mother, is the steaming mug of tea on the sofa in a warm winter that warms you through.",
     story: "洛神花是紅色的，是很溫暖的紅色，是愛的顏色，是在鄉愁時陪伴我的顏色。\n洛神花是家，是母親，是暖冬時在沙發上，冒著煙的馬克杯中，能暖身子的一杯茶。"
   },
   {
@@ -1325,6 +1381,8 @@ const cocktails = [
     taste: { acid: 3, sweet: 2, alc: 1, body: 2 },
     img: "img/cocktails/cocktail-05-sangria.jpg",
     ingredients: ["紅酒", "白蘭地", "香艾酒", "柳橙", "覆盆莓"],
+    ingredientsEn: ["Red Wine", "Brandy", "Vermouth", "Orange", "Raspberry"],
+    storyEn: "Traditional Sangria reclines in a Spanish afternoon courtyard — light, fruity, easy.\nI pushed in brandy and vermouth, and it stood up —\nthe same red wine, orange, berries, but with a new spine, it became someone else entirely.",
     story: "傳統的 Sangria 躺在西班牙午後的庭院，輕盈、果香、好入口。\n我把白蘭地和香艾酒推進去，它就站起來了——\n同樣的紅酒、柳橙、莓果，換個骨架，就是另一個人。"
   },
   {
@@ -1333,6 +1391,8 @@ const cocktails = [
     taste: { acid: 1, sweet: 4, alc: 3, body: 4 },
     img: "img/cocktails/cocktail-06-daydream.jpg",
     ingredients: ["白酒", "香艾酒", "葡夢香甜酒", "櫻桃利口酒"],
+    ingredientsEn: ["White Wine", "Vermouth", "Pavan", "Cherry Liqueur"],
+    storyEn: "Three in the afternoon, sunlight slanting onto the table's edge.\nDoing nothing, wanting nothing.\nThe scent of grape and cherry drifts over, like an adagio with no intention of ending,\ngently nudging you from here to the other side of a dream.",
     story: "午後三點，太陽斜斜地落在桌邊。\n沒在做什麼，也沒有想做什麼。\n葡萄與櫻桃的香氣繞過來，像一段沒打算結束的慢板，把人從這裡，輕輕推到夢的那邊。"
   },
   {
@@ -1341,6 +1401,8 @@ const cocktails = [
     taste: { acid: 2, sweet: 3, alc: 2, body: 2 },
     img: "img/cocktails/cocktail-07-charlie.jpg",
     ingredients: ["黑刺李琴酒", "琴酒", "杏仁香甜酒", "檸檬", "蘇打"],
+    ingredientsEn: ["Sloe Gin", "Gin", "Amaretto", "Lemon", "Soda"],
+    storyEn: "Charlie's angry again today.\nMaybe the elevator was too crowded, the coffee too hot, or some message left unanswered.\nBut what he doesn't know is —\nthe sloe gin dissolves his temper bit by bit, the amaretto coaxes him,\nthe soda lets him sigh it all out.\nBy the last sip, he'll probably forget what he was angry about.",
     story: "查理今天又在氣了。\n大概是電梯太擠、咖啡太燙、或某個沒回的訊息。\n但他不知道的是——黑刺李會把火氣一點點化開，杏仁是哄人的，蘇打是讓他嘆出那口氣的。\n喝完，他大概會忘記在氣什麼。"
   },
   {
@@ -1349,6 +1411,8 @@ const cocktails = [
     taste: { acid: 3, sweet: 3, alc: 5, body: 5 },
     img: "img/cocktails/cocktail-08-bishop.jpg",
     ingredients: ["蘭姆酒", "伏特加", "琴酒", "君度橙酒", "梅酒", "百香果"],
+    ingredientsEn: ["Rum", "Vodka", "Gin", "Cointreau", "Plum Wine", "Passion Fruit"],
+    storyEn: "There are no churches at sea; sailors have their own prayers.\nRum is the deck, gin is the wind, plum wine is the memory of shore,\npassion fruit is that sudden beam of light in the tropical night.\nOne sip and you'll understand —\nwhy those who sail far always talk to the stars.",
     story: "大海上沒有教堂，水手有水手的祈禱。\n蘭姆酒是甲板、琴酒是風、梅酒是岸上的記憶，百香果是熱帶夜裡那束突然出現的光。\n一杯下去你就懂——為什麼遠航的人總要對著星星說話。"
   },
   {
@@ -1357,6 +1421,8 @@ const cocktails = [
     taste: { acid: 2, sweet: 3.5, alc: 3, body: 3 },
     img: "img/cocktails/cocktail-09-childhood.jpg",
     ingredients: ["梅酒", "白蘭地", "君度橙酒", "青蘋果"],
+    ingredientsEn: ["Plum Wine", "Brandy", "Cointreau", "Green Apple"],
+    storyEn: "Not every childhood sweetheart ends up together.\nBut that summer afternoon, that winding alley, the way your name was called —\nthey're still tucked into the warmest corner of memory.\nGreen apple is the tartness of first meeting, plum wine the sweetness of time,\nbrandy the warmth understood only later.",
     story: "不是每個青梅竹馬最後都在一起。\n但那個夏天的午後、那條彎彎的小巷、那聲喊你名字的口吻，還是會被收進記憶最暖的角落。\n青蘋果是初遇的酸，梅酒是時間的甜，白蘭地是後來才懂的溫度。"
   },
   {
@@ -1365,6 +1431,8 @@ const cocktails = [
     taste: { acid: 2, sweet: 3, alc: 5, body: 5 },
     img: "img/cocktails/cocktail-10-queenbee.jpg",
     ingredients: ["威士忌", "巨峰葡萄香甜酒", "君度橙酒", "檸檬"],
+    ingredientsEn: ["Whiskey", "Kyoho Grape Liqueur", "Cointreau", "Lemon"],
+    storyEn: "Not every mountain needs to be conquered.\nSome just stand there, a landscape unto themselves.\nFour Roses is the armor on her shoulders, Kyoho grape the purple of her gown,\nyou can only look up —\nthen drink down this fire, and remember you once held your head this high.",
     story: "不是每座山都需要被征服。\n有些山就站在那裡，自成風景。\n四玫瑰是她肩上的盔甲，巨峰葡萄是她裙擺的紫色，你只能仰望——\n然後喝下這口烈，記住自己曾經這樣抬頭過。"
   }
 ];
@@ -1431,19 +1499,20 @@ cocktails.forEach((c) => {
         <span class="price">NT$ ${c.price}</span>
       </div>
       <div class="taste">
-        <div>酸 ${stars(c.taste.acid)}</div>
-        <div>甜 ${stars(c.taste.sweet)}</div>
-        <div>酒感 ${stars(c.taste.alc)}</div>
-        <div>濃度 ${stars(c.taste.body)}</div>
+        <div>酸 <em>Sour</em> ${stars(c.taste.acid)}</div>
+        <div>甜 <em>Sweet</em> ${stars(c.taste.sweet)}</div>
+        <div>酒感 <em>Strength</em> ${stars(c.taste.alc)}</div>
+        <div>濃度 <em>Body</em> ${stars(c.taste.body)}</div>
       </div>
       <div class="ingredients">
-        <span class="ing-label">成分</span>
+        <span class="ing-label">成分 / Ingredients</span>
         <span class="ing-list">${c.ingredients.map((g,i)=>i===0?`<b>${g}</b>`:g).join(' · ')}</span>
+        <span class="ing-list ing-en">${c.ingredientsEn.map((g,i)=>i===0?`<b>${g}</b>`:g).join(' · ')}</span>
       </div>
       <div class="toggle-hint">STORY</div>
     </div>
     <div class="story">
-      <div class="story-inner"><p>${c.story}</p></div>
+      <div class="story-inner"><p>${c.story}</p><p class="story-en">${c.storyEn}</p></div>
     </div>
   `;
   cgrid.appendChild(article);
@@ -1469,13 +1538,13 @@ sodas.forEach((s) => {
   const CLOSED_DAYS = new Set([1, 4]);
 
   function fmtDuration(mins) {
-    if (mins < 60) return `${mins} 分鐘`;
+    if (mins < 60) return `${mins}m`;
     const h = Math.floor(mins / 60);
     const m = mins % 60;
-    if (h < 24) return m > 0 ? `${h} 小時 ${m} 分` : `${h} 小時`;
+    if (h < 24) return m > 0 ? `${h}h ${m}m` : `${h}h`;
     const d = Math.floor(h / 24);
     const rh = h % 24;
-    return rh > 0 ? `${d} 天 ${rh} 小時` : `${d} 天`;
+    return rh > 0 ? `${d}d ${rh}h` : `${d}d`;
   }
 
   function getStatus(now = new Date()) {
@@ -1489,7 +1558,7 @@ sodas.forEach((s) => {
         const minsLeft = OPEN_END - totalMin;
         return {
           state: minsLeft <= 30 ? 'soon' : 'open',
-          label: `現在營業中 · ${fmtDuration(minsLeft)}後打烊`
+          label: `營業中 Open · ${fmtDuration(minsLeft)} left`
         };
       }
     }
@@ -1499,7 +1568,7 @@ sodas.forEach((s) => {
         const minsLeft = (24 * 60 + OPEN_END) - totalMin;
         return {
           state: minsLeft <= 30 ? 'soon' : 'open',
-          label: `現在營業中 · ${fmtDuration(minsLeft)}後打烊`
+          label: `營業中 Open · ${fmtDuration(minsLeft)} left`
         };
       }
     }
@@ -1517,10 +1586,10 @@ sodas.forEach((s) => {
       }
       return {
         state: minsTo <= 60 ? 'soon' : 'closed',
-        label: `現在公休 · ${fmtDuration(minsTo)}後開門`
+        label: `公休 Closed · opens in ${fmtDuration(minsTo)}`
       };
     }
-    return { state: 'closed', label: '現在公休' };
+    return { state: 'closed', label: '公休 Closed' };
   }
 
   function update() {
