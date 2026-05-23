@@ -559,14 +559,25 @@ article.cocktail .stat .price {
 }
 
 article.cocktail .taste {
-  margin-top: 14px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px 14px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
   font-size: 11px;
   letter-spacing: 0.1em;
   color: var(--ink-mute);
   padding-left: 0.1em;
+}
+
+article.cocktail .taste > div {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+article.cocktail .taste .t-name {
+  min-width: 98px;
+  flex-shrink: 0;
 }
 
 article.cocktail .taste .rating {
@@ -1499,10 +1510,10 @@ cocktails.forEach((c) => {
         <span class="price">NT$ ${c.price}</span>
       </div>
       <div class="taste">
-        <div>酸 <em>Sour</em> ${stars(c.taste.acid)}</div>
-        <div>甜 <em>Sweet</em> ${stars(c.taste.sweet)}</div>
-        <div>酒感 <em>Strength</em> ${stars(c.taste.alc)}</div>
-        <div>濃度 <em>Body</em> ${stars(c.taste.body)}</div>
+        <div><span class="t-name">酸 <em>Sour</em></span>${stars(c.taste.acid)}</div>
+        <div><span class="t-name">甜 <em>Sweet</em></span>${stars(c.taste.sweet)}</div>
+        <div><span class="t-name">酒感 <em>Strength</em></span>${stars(c.taste.alc)}</div>
+        <div><span class="t-name">濃度 <em>Body</em></span>${stars(c.taste.body)}</div>
       </div>
       <div class="ingredients">
         <span class="ing-label">成分 / Ingredients</span>
