@@ -946,6 +946,44 @@ article.cocktail.open .toggle-hint { color: var(--gold); }
   padding-left: 0.18em;
 }
 
+/* === KOMBUCHA CARD === */
+.kombucha-card {
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+  overflow: hidden;
+}
+
+.kombucha-card .k-img {
+  margin: 0;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.kombucha-card .k-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.kombucha-card:hover .k-img img {
+  transform: scale(1.04);
+}
+
+.kombucha-card .k-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px;
+}
+
+@media (min-width: 640px) {
+  .kombucha-card .k-img { aspect-ratio: 1 / 1; }
+}
+
 .section-note {
   text-align: center;
   font-size: 11px;
@@ -1506,7 +1544,7 @@ const sodas = [
 ];
 
 const kombuchas = [
-  { cn: "風茹仙人掌康普茶", en: "Fengru & Cactus Kombucha", price: 160, sub: "無酒精 ｜ Non-alcoholic" }
+  { cn: "風茹仙人掌康普茶", en: "Fengru & Cactus Kombucha", price: 160, sub: "無酒精 ｜ Non-alcoholic", img: "img/kombucha-fengru.jpg" }
 ];
 
 // ============ RENDER ============
@@ -1593,12 +1631,18 @@ sodas.forEach((s) => {
 const kgrid = document.getElementById('kombucha-grid');
 kombuchas.forEach((k) => {
   const card = document.createElement('div');
-  card.className = 'simple-card';
+  card.className = 'simple-card kombucha-card';
   card.innerHTML = `
-    <div class="name">${k.cn}<span class="en">${k.en}</span></div>
-    <div class="meta">
-      <span class="price">NT$ ${k.price}</span>
-      <span class="sub">${k.sub}</span>
+    ${k.img ? `<figure class="k-img">
+      <img src="${k.img}" alt="${k.cn} ${k.en}" loading="lazy"
+           onerror="this.parentElement.style.display='none';">
+    </figure>` : ''}
+    <div class="k-body">
+      <div class="name">${k.cn}<span class="en">${k.en}</span></div>
+      <div class="meta">
+        <span class="price">NT$ ${k.price}</span>
+        <span class="sub">${k.sub}</span>
+      </div>
     </div>
   `;
   kgrid.appendChild(card);
