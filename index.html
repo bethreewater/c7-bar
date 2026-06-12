@@ -62,7 +62,11 @@
           { "@type": "MenuItem", "name": "秘藏牛肉飯 Secret Recipe Braised Beef Rice", "offers": { "@type": "Offer", "price": "280", "priceCurrency": "TWD" } }
         ] },
       { "@type": "MenuSection", "name": "雞尾酒 / Cocktails (NT$300–400)" },
-      { "@type": "MenuSection", "name": "好氣氣泡飲 / Angry Soda (NT$200–250, 無酒精)" }
+      { "@type": "MenuSection", "name": "好氣氣泡飲 / Angry Soda (NT$200–250, 無酒精)" },
+      { "@type": "MenuSection", "name": "康普茶 / Kombucha (NT$160, 無酒精)",
+        "hasMenuItem": [
+          { "@type": "MenuItem", "name": "風茹仙人掌康普茶 Fengru & Cactus Kombucha", "offers": { "@type": "Offer", "price": "160", "priceCurrency": "TWD" } }
+        ] }
     ]
   }
 }
@@ -1239,6 +1243,7 @@ footer.site .social .dot {
   <a href="#eats">主食</a>
   <a href="#cocktails">雞尾酒</a>
   <a href="#mocktail">好氣</a>
+  <a href="#kombucha">康普茶</a>
   <a href="#visit">前來</a>
   <a href="#about">關於</a>
 </nav>
@@ -1264,6 +1269,14 @@ footer.site .social .dot {
   <div class="section-rule"></div>
   <div class="simple-grid" id="soda-grid"></div>
   <p class="section-note">無酒精・果香氣泡　·　Non-alcoholic fruit soda</p>
+</section>
+
+<!-- ============ KOMBUCHA ============ -->
+<section id="kombucha">
+  <h2 class="section-title">KOMBUCHA<span class="zh">康普茶</span></h2>
+  <div class="section-rule"></div>
+  <div class="simple-grid" id="kombucha-grid"></div>
+  <p class="section-note">澎湖風茹 × 仙人掌果・自然發酵・無酒精　·　Naturally fermented with Penghu fengru herb &amp; cactus fruit</p>
 </section>
 
 <!-- ============ VISIT ============ -->
@@ -1299,12 +1312,13 @@ footer.site .social .dot {
   <div class="about-card">
     <div class="about-row">
       <p class="label">SERVICES ｜ 服務內容</p>
-      <p class="about-text">本店提供現場餐飲服務，包含主食餐點、特色調飲、無酒精氣泡飲與露天餐酒吧用餐體驗。</p>
-      <p class="about-text-en">On-site dining: main dishes, signature cocktails, non-alcoholic sodas, and an open-air bar experience.</p>
+      <p class="about-text">本店提供現場餐飲服務，包含主食餐點、特色調飲、無酒精氣泡飲、康普茶與露天餐酒吧用餐體驗。</p>
+      <p class="about-text-en">On-site dining: main dishes, signature cocktails, non-alcoholic sodas, kombucha, and an open-air bar experience.</p>
       <ul class="about-list">
         <li>主食餐點 Main dishes（秘藏牛肉麵、秘藏牛肉飯）</li>
         <li>手作特色調飲 Signature cocktails（10 款）</li>
         <li>無酒精氣泡飲 Non-alcoholic sodas（好氣系列 8 款）</li>
+        <li>無酒精康普茶 Kombucha（澎湖風茹 × 仙人掌果）</li>
         <li>露天用餐體驗 Open-air dining</li>
       </ul>
     </div>
@@ -1491,6 +1505,10 @@ const sodas = [
   { cn: "特調好氣",     en: "Angry Special",       price: 250 }
 ];
 
+const kombuchas = [
+  { cn: "風茹仙人掌康普茶", en: "Fengru & Cactus Kombucha", price: 160, sub: "無酒精 ｜ Non-alcoholic" }
+];
+
 // ============ RENDER ============
 function stars(n, total = 5) {
   const pct = Math.max(0, Math.min(100, (n / total) * 100));
@@ -1570,6 +1588,20 @@ sodas.forEach((s) => {
     <div class="meta"><span class="price">NT$ ${s.price}</span></div>
   `;
   sgrid.appendChild(card);
+});
+
+const kgrid = document.getElementById('kombucha-grid');
+kombuchas.forEach((k) => {
+  const card = document.createElement('div');
+  card.className = 'simple-card';
+  card.innerHTML = `
+    <div class="name">${k.cn}<span class="en">${k.en}</span></div>
+    <div class="meta">
+      <span class="price">NT$ ${k.price}</span>
+      <span class="sub">${k.sub}</span>
+    </div>
+  `;
+  kgrid.appendChild(card);
 });
 
 // ============ LIVE STATUS ============
