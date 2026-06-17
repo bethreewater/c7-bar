@@ -13,6 +13,12 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:url" content="https://bethreewater.github.io/c7-bar/">
 <meta property="og:image" content="https://bethreewater.github.io/c7-bar/img/logo.png">
+<link rel="canonical" href="https://bethreewater.github.io/c7-bar/">
+<link rel="alternate" hreflang="zh-Hant" href="https://bethreewater.github.io/c7-bar/?lang=zh">
+<link rel="alternate" hreflang="en" href="https://bethreewater.github.io/c7-bar/?lang=en">
+<link rel="alternate" hreflang="ja" href="https://bethreewater.github.io/c7-bar/?lang=ja">
+<link rel="alternate" hreflang="ko" href="https://bethreewater.github.io/c7-bar/?lang=ko">
+<link rel="alternate" hreflang="x-default" href="https://bethreewater.github.io/c7-bar/">
 <title>CONTAINER NO.7 ｜ 七號貨櫃 ｜ 依山水有限公司 ｜ 澎湖馬公露天餐酒吧</title>
 <script type="application/ld+json">
 {
@@ -379,6 +385,44 @@ a { color: inherit; text-decoration: none; }
   50%      { transform: translateX(-50%) translateY(6px); opacity: 1; }
 }
 
+/* === LANGUAGE SWITCH === */
+.lang-switch {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 60;
+  display: flex;
+  gap: 1px;
+  background: rgba(12, 12, 12, 0.94);
+  backdrop-filter: saturate(160%) blur(12px);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  border: 1px solid var(--gold-soft);
+  border-radius: 999px;
+  padding: 3px;
+  box-shadow: -8px 0 16px rgba(10,10,10,0.6), 0 2px 10px rgba(0,0,0,0.4);
+}
+
+.lang-switch button {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--ink-mute);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px 9px;
+  border-radius: 999px;
+  line-height: 1;
+  transition: color 0.15s, background 0.15s;
+}
+
+.lang-switch button.active {
+  color: var(--bg);
+  background: var(--gold);
+}
+
+.lang-switch button:hover:not(.active) { color: var(--ink); }
+
 /* === NAV === */
 nav.menu-nav {
   position: sticky;
@@ -393,6 +437,10 @@ nav.menu-nav {
   white-space: nowrap;
   overflow-x: auto;
   scrollbar-width: none;
+}
+
+@media (max-width: 639px) {
+  nav.menu-nav { text-align: left; padding-right: 64px; }
 }
 
 nav.menu-nav::-webkit-scrollbar { display: none; }
@@ -580,7 +628,7 @@ article.cocktail .taste > div {
 }
 
 article.cocktail .taste .t-name {
-  min-width: 98px;
+  min-width: 68px;
   flex-shrink: 0;
 }
 
@@ -713,15 +761,11 @@ article.cocktail.open .toggle-hint { color: var(--gold); }
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
-  article.cocktail .ingredients .ing-en { display: none; }
-  article.cocktail.open .ingredients .ing-en { display: block; }
   article.cocktail .ingredients { margin-top: 12px; padding-top: 11px; }
   article.cocktail .ingredients .ing-list { font-size: 11px; line-height: 1.7; }
   article.cocktail .taste { margin-top: 11px; gap: 6px; }
-  article.cocktail .taste em { display: none; }
-  article.cocktail .taste .t-name { min-width: 46px; }
-  article.cocktail.open .taste em { display: inline; }
-  article.cocktail.open .taste .t-name { min-width: 98px; }
+  article.cocktail .taste .t-name { min-width: 44px; }
+  article.cocktail.open .taste .t-name { min-width: 64px; }
   article.cocktail.open { grid-column: 1 / -1; }
   article.cocktail.open .cocktail-img { aspect-ratio: 16 / 10; }
   article.cocktail .head { padding: 13px 13px 14px; }
@@ -1245,6 +1289,9 @@ footer.site .social .dot {
 </head>
 <body>
 
+<!-- ============ LANGUAGE SWITCH ============ -->
+<div class="lang-switch" id="lang-switch" role="group" aria-label="language"></div>
+
 <!-- ============ HERO ============ -->
 <header class="hero">
   <img class="hero-logo-img" src="img/logo.png" alt="Penghu Container No.7 ｜ Cocktail.Chill."
@@ -1257,7 +1304,7 @@ footer.site .social .dot {
     <p class="tag">COCKTAIL<span class="sep">.</span>CHILL<span class="sep">.</span></p>
   </div>
 
-  <p class="hero-zh">七號貨櫃<span class="sep">｜</span>海邊 chill 一下</p>
+  <p class="hero-zh" data-i18n="hero_sub"></p>
   <div class="hero-meta">
     <span class="hours">
       <span class="num">18</span><span class="colon">:</span><span class="num">07</span>
@@ -1267,120 +1314,106 @@ footer.site .social .dot {
     <div class="hours-progress" id="hours-progress" aria-hidden="true">
       <div class="hours-progress-dot" id="hours-progress-dot"></div>
     </div>
-    <span class="closed">每週一・四 公休</span>
+    <span class="closed" data-i18n="closed_days"></span>
     <div class="status-pill" id="status-pill" aria-live="polite">
       <span class="status-dot"></span>
-      <span class="status-label" id="status-label">載入中…</span>
+      <span class="status-label" id="status-label" data-i18n="status_loading"></span>
     </div>
   </div>
   <p class="scroll-hint">SCROLL</p>
 </header>
 
 <!-- ============ NAV ============ -->
-<nav class="menu-nav" aria-label="主選單">
-  <a href="#eats">主食</a>
-  <a href="#cocktails">雞尾酒</a>
-  <a href="#mocktail">好氣</a>
-  <a href="#kombucha">康普茶</a>
-  <a href="#visit">前來</a>
-  <a href="#about">關於</a>
+<nav class="menu-nav" aria-label="menu">
+  <a href="#eats" data-i18n="nav_eats"></a>
+  <a href="#cocktails" data-i18n="nav_cocktails"></a>
+  <a href="#mocktail" data-i18n="nav_soda"></a>
+  <a href="#kombucha" data-i18n="nav_kombucha"></a>
+  <a href="#visit" data-i18n="nav_visit"></a>
+  <a href="#about" data-i18n="nav_about"></a>
 </nav>
 
 <!-- ============ EATS ============ -->
 <section id="eats">
-  <h2 class="section-title">EATS<span class="zh">主食</span></h2>
+  <h2 class="section-title">EATS<span class="zh hide-when-empty" data-i18n="sec_eats"></span></h2>
   <div class="section-rule"></div>
   <div class="eats-grid" id="eats-grid"></div>
-  <p class="section-note">慢燉入味・秘藏濃香　·　Slow-braised, deeply savory</p>
+  <p class="section-note" data-i18n="note_eats"></p>
 </section>
 
 <!-- ============ COCKTAILS ============ -->
 <section id="cocktails">
-  <h2 class="section-title">COCKTAILS<span class="zh">雞尾酒</span></h2>
+  <h2 class="section-title">COCKTAILS<span class="zh hide-when-empty" data-i18n="sec_cocktails"></span></h2>
   <div class="section-rule"></div>
   <div class="cocktail-grid" id="cocktail-grid"></div>
 </section>
 
 <!-- ============ MOCKTAIL ============ -->
 <section id="mocktail">
-  <h2 class="section-title">ANGRY SODA<span class="zh">好氣氣泡飲</span></h2>
+  <h2 class="section-title">ANGRY SODA<span class="zh hide-when-empty" data-i18n="sec_soda"></span></h2>
   <div class="section-rule"></div>
   <div class="simple-grid" id="soda-grid"></div>
-  <p class="section-note">無酒精・果香氣泡　·　Non-alcoholic fruit soda</p>
+  <p class="section-note" data-i18n="note_soda"></p>
 </section>
 
 <!-- ============ KOMBUCHA ============ -->
 <section id="kombucha">
-  <h2 class="section-title">KOMBUCHA<span class="zh">康普茶</span></h2>
+  <h2 class="section-title">KOMBUCHA<span class="zh hide-when-empty" data-i18n="sec_kombucha"></span></h2>
   <div class="section-rule"></div>
   <div class="simple-grid" id="kombucha-grid"></div>
-  <p class="section-note">澎湖風茹 × 仙人掌果・自然發酵・無酒精　·　Naturally fermented with Penghu fengru herb &amp; cactus fruit</p>
+  <p class="section-note" data-i18n="note_kombucha"></p>
 </section>
 
 <!-- ============ VISIT ============ -->
 <section id="visit" class="visit">
-  <h2 class="section-title">VISIT<span class="zh">前來</span></h2>
+  <h2 class="section-title">VISIT<span class="zh hide-when-empty" data-i18n="sec_visit"></span></h2>
   <div class="section-rule"></div>
   <div class="visit-card">
     <div class="row">
-      <p class="label">HOURS ｜ 營業時間</p>
+      <p class="label" data-i18n="lbl_hours"></p>
       <p class="value big">18:07 — 00:07</p>
-      <p class="value sub">週一・四 公休　·　Daily, closed Mon &amp; Thu</p>
+      <p class="value sub" data-i18n="visit_closed_sub"></p>
     </div>
     <div class="row">
-      <p class="label">ADDRESS ｜ 地址</p>
-      <p class="value">880 澎湖縣馬公市 11015 號</p>
-      <p class="value sub">No. 11015, Magong City, Penghu County 880, Taiwan</p>
+      <p class="label" data-i18n="lbl_address"></p>
+      <p class="value" data-i18n="address_value"></p>
     </div>
     <div class="row">
-      <p class="label">CONTACT ｜ 訂位</p>
+      <p class="label" data-i18n="lbl_contact"></p>
       <p class="value"><a class="inline-link" href="tel:+886963059889">0963 - 059 - 889</a></p>
     </div>
-    <a class="maps-link"
+    <a class="maps-link" data-i18n="maps_btn"
        href="https://maps.app.goo.gl/Z4W8LbQ4JX9krFeu7"
-       target="_blank" rel="noopener">GOOGLE MAPS →</a>
+       target="_blank" rel="noopener"></a>
   </div>
 </section>
 
 <!-- ============ ABOUT / 公司資訊 ============ -->
 <section id="about" class="about">
-  <h2 class="section-title">ABOUT<span class="zh">關於</span></h2>
+  <h2 class="section-title">ABOUT<span class="zh hide-when-empty" data-i18n="sec_about"></span></h2>
   <div class="section-rule"></div>
 
   <div class="about-card">
     <div class="about-row">
-      <p class="label">SERVICES ｜ 服務內容</p>
-      <p class="about-text">本店提供現場餐飲服務，包含主食餐點、特色調飲、無酒精氣泡飲、康普茶與露天餐酒吧用餐體驗。</p>
-      <p class="about-text-en">On-site dining: main dishes, signature cocktails, non-alcoholic sodas, kombucha, and an open-air bar experience.</p>
-      <ul class="about-list">
-        <li>主食餐點 Main dishes（秘藏牛肉麵、秘藏牛肉飯）</li>
-        <li>手作特色調飲 Signature cocktails（10 款）</li>
-        <li>無酒精氣泡飲 Non-alcoholic sodas（好氣系列 8 款）</li>
-        <li>無酒精康普茶 Kombucha（澎湖風茹 × 仙人掌果）</li>
-        <li>露天用餐體驗 Open-air dining</li>
-      </ul>
+      <p class="label" data-i18n="lbl_services"></p>
+      <p class="about-text" data-i18n="about_services_body"></p>
+      <ul class="about-list" id="about-list"></ul>
     </div>
 
     <div class="about-row">
-      <p class="label">COMPANY ｜ 經營主體</p>
-      <p class="company-name">依山水有限公司</p>
-      <p class="about-text-en">Yi Shan Shui Co., Ltd.</p>
-      <p class="about-text">統一編號 Tax ID：96160460</p>
-      <p class="about-text">本網站為依山水有限公司所經營之 CONTAINER NO.7（七號貨櫃）官方網站。</p>
-      <p class="about-text-en">This is the official website of CONTAINER NO.7, operated by Yi Shan Shui Co., Ltd.</p>
+      <p class="label" data-i18n="lbl_company"></p>
+      <p class="company-name" data-i18n="company_name"></p>
+      <p class="about-text-en hide-when-empty" data-i18n="company_name_sub"></p>
+      <p class="about-text" data-i18n="tax_line"></p>
+      <p class="about-text" data-i18n="about_official"></p>
     </div>
 
     <div class="about-row">
-      <p class="label">CONTACT ｜ 聯絡方式</p>
-      <p class="about-text">電話訂位 Reservations：<a class="inline-link" href="tel:+886963059889">0963-059-889</a></p>
-      <p class="about-text">店面地址 Address：880 澎湖縣馬公市 11015 號</p>
-      <p class="about-text-en">No. 11015, Magong City, Penghu County 880, Taiwan</p>
-      <p class="about-text">營業時間 Hours：每日 18:07—00:07，週一・四公休</p>
-      <p class="about-text">
-        <a class="inline-link" href="https://maps.app.goo.gl/Z4W8LbQ4JX9krFeu7" target="_blank" rel="noopener">Google Maps 位置</a>
-        ｜
-        <a class="inline-link" href="https://www.instagram.com/container_no.7_penghu/" target="_blank" rel="noopener">Instagram</a>
-      </p>
+      <p class="label" data-i18n="lbl_contact2"></p>
+      <p class="about-text" data-i18n-html="about_phone"></p>
+      <p class="about-text" data-i18n="about_address"></p>
+      <p class="about-text" data-i18n="about_hours"></p>
+      <p class="about-text" data-i18n-html="about_links"></p>
     </div>
   </div>
 </section>
@@ -1388,9 +1421,9 @@ footer.site .social .dot {
 <!-- ============ FOOTER ============ -->
 <footer class="site">
   <p class="mark">CONTAINER NO.7</p>
-  <p class="brand-line">七號貨櫃 ｜ 澎湖馬公露天餐酒吧</p>
-  <p class="company-line">經營主體 ｜ 依山水有限公司 ｜ 統一編號 96160460</p>
-  <p class="address-line">880 澎湖縣馬公市 11015 號 ｜ 18:07—00:07（週一・四公休）</p>
+  <p class="brand-line" data-i18n="footer_brand"></p>
+  <p class="company-line" data-i18n="footer_company"></p>
+  <p class="address-line" data-i18n="footer_addr"></p>
   <p class="address-line">
     <a class="inline-link" href="tel:+886963059889">0963-059-889</a>
   </p>
@@ -1399,152 +1432,294 @@ footer.site .social .dot {
     <span class="dot">·</span>
     <a href="https://maps.app.goo.gl/Z4W8LbQ4JX9krFeu7" target="_blank" rel="noopener">GOOGLE MAPS</a>
   </p>
-  <p class="copy">© 2026 依山水有限公司 ｜ All rights reserved.</p>
+  <p class="copy" data-i18n="footer_copy"></p>
 </footer>
 
 <script>
-// ============ DATA ============
-const eats = [
-  {
-    cn: "秘藏牛肉麵",
-    en: "Secret Recipe Braised Beef Noodles",
-    price: 280,
-    spicy: "微微辣 ｜ Mildly Spicy",
-    tagZh: "慢燉入味，秘藏濃香",
-    tagEn: "Slow-Braised. Deeply Savory.",
-    noteZh: "每一口，都是厚實而溫潤的滿足。",
-    noteEn: "Rich comfort in every bite.",
-    img: "img/beef-noodles.jpg"
+// ============ I18N ============
+const SUPPORTED = ['zh','en','ja','ko'];
+const HTML_LANG = { zh:'zh-TW', en:'en', ja:'ja', ko:'ko' };
+
+const I18N = {
+  zh: {
+    doc_title: "七號貨櫃 ｜ Container No.7 ｜ 澎湖馬公露天餐酒吧",
+    hero_sub: "七號貨櫃 ｜ 海邊 chill 一下",
+    closed_days: "每週一・四 公休",
+    nav_eats:"主食", nav_cocktails:"雞尾酒", nav_soda:"好氣", nav_kombucha:"康普茶", nav_visit:"前來", nav_about:"關於",
+    sec_eats:"主食", sec_cocktails:"雞尾酒", sec_soda:"好氣氣泡飲", sec_kombucha:"康普茶", sec_visit:"前來", sec_about:"關於",
+    note_eats:"慢燉入味・秘藏濃香", note_soda:"無酒精・果香氣泡", note_kombucha:"澎湖風茹 × 仙人掌果・自然發酵・無酒精",
+    taste_sour:"酸", taste_sweet:"甜", taste_strength:"酒感", taste_body:"濃度",
+    ingredients_label:"成分", story_hint:"故事", spicy_mild:"微微辣",
+    lbl_hours:"HOURS ｜ 營業時間", lbl_address:"ADDRESS ｜ 地址", lbl_contact:"CONTACT ｜ 訂位",
+    lbl_services:"SERVICES ｜ 服務內容", lbl_company:"COMPANY ｜ 經營主體", lbl_contact2:"CONTACT ｜ 聯絡方式",
+    visit_closed_sub:"週一・四 公休",
+    address_value:"880 澎湖縣馬公市 11015 號",
+    maps_btn:"GOOGLE MAPS →",
+    about_services_body:"本店提供現場餐飲服務，包含主食餐點、特色調飲、無酒精氣泡飲、康普茶與露天餐酒吧用餐體驗。",
+    about_services_list:["主食餐點（秘藏牛肉麵、秘藏牛肉飯）","手作特色調飲（10 款雞尾酒）","無酒精氣泡飲（好氣系列 8 款）","無酒精康普茶（澎湖風茹 × 仙人掌果）","露天用餐體驗"],
+    company_name:"依山水有限公司", company_name_sub:"",
+    tax_line:"統一編號：96160460",
+    about_official:"本網站為依山水有限公司所經營之 CONTAINER NO.7（七號貨櫃）官方網站。",
+    about_phone:'電話訂位：<a class="inline-link" href="tel:+886963059889">0963-059-889</a>',
+    about_address:"店面地址：880 澎湖縣馬公市 11015 號",
+    about_hours:"營業時間：每日 18:07—00:07，週一・四公休",
+    about_links:'<a class="inline-link" href="https://maps.app.goo.gl/Z4W8LbQ4JX9krFeu7" target="_blank" rel="noopener">Google Maps 位置</a> ｜ <a class="inline-link" href="https://www.instagram.com/container_no.7_penghu/" target="_blank" rel="noopener">Instagram</a>',
+    footer_brand:"七號貨櫃 ｜ 澎湖馬公露天餐酒吧",
+    footer_company:"經營主體 ｜ 依山水有限公司 ｜ 統一編號 96160460",
+    footer_addr:"880 澎湖縣馬公市 11015 號 ｜ 18:07—00:07（週一・四公休）",
+    footer_copy:"© 2026 依山水有限公司 ｜ All rights reserved.",
+    status_open:"營業中 · 還有 {t} 打烊", status_closed_opens:"公休 · {t} 後開門", status_closed:"公休", status_loading:"載入中…"
   },
-  {
-    cn: "秘藏牛肉飯",
-    en: "Secret Recipe Braised Beef Rice",
-    price: 280,
-    spicy: "微微辣 ｜ Mildly Spicy",
-    tagZh: "慢燉入味，秘藏濃香",
-    tagEn: "Slow-Braised. Deeply Savory.",
-    noteZh: "一碗，藏住時間熬出的風味。",
-    noteEn: "A bowl of flavor crafted with time.",
-    img: "img/beef-rice.jpg"
+  en: {
+    doc_title: "Container No.7 ｜ Open-air Bar in Penghu, Taiwan",
+    hero_sub: "Container No.7 ｜ Chill by the sea",
+    closed_days: "Closed Mondays & Thursdays",
+    nav_eats:"Eats", nav_cocktails:"Cocktails", nav_soda:"Soda", nav_kombucha:"Kombucha", nav_visit:"Visit", nav_about:"About",
+    sec_eats:"", sec_cocktails:"", sec_soda:"", sec_kombucha:"", sec_visit:"", sec_about:"",
+    note_eats:"Slow-braised, deeply savory", note_soda:"Non-alcoholic fruit soda", note_kombucha:"Naturally fermented with Penghu fengru & cactus fruit",
+    taste_sour:"Sour", taste_sweet:"Sweet", taste_strength:"Strength", taste_body:"Body",
+    ingredients_label:"Ingredients", story_hint:"STORY", spicy_mild:"Mildly Spicy",
+    lbl_hours:"HOURS", lbl_address:"ADDRESS", lbl_contact:"CONTACT",
+    lbl_services:"SERVICES", lbl_company:"COMPANY", lbl_contact2:"CONTACT",
+    visit_closed_sub:"Closed Mon & Thu",
+    address_value:"No. 11015, Magong City, Penghu County 880, Taiwan",
+    maps_btn:"GOOGLE MAPS →",
+    about_services_body:"On-site dining: main dishes, signature cocktails, non-alcoholic sodas, kombucha, and an open-air bar experience.",
+    about_services_list:["Main dishes (Secret Recipe Beef Noodles & Rice)","Signature cocktails (10 kinds)","Non-alcoholic sodas (8 Angry Soda flavors)","Kombucha (Penghu fengru × cactus fruit)","Open-air dining"],
+    company_name:"Yi Shan Shui Co., Ltd.", company_name_sub:"",
+    tax_line:"Tax ID: 96160460",
+    about_official:"This is the official website of CONTAINER NO.7, operated by Yi Shan Shui Co., Ltd.",
+    about_phone:'Reservations: <a class="inline-link" href="tel:+886963059889">+886 963-059-889</a>',
+    about_address:"Address: No. 11015, Magong City, Penghu County 880, Taiwan",
+    about_hours:"Hours: Daily 18:07–00:07, closed Mon & Thu",
+    about_links:'<a class="inline-link" href="https://maps.app.goo.gl/Z4W8LbQ4JX9krFeu7" target="_blank" rel="noopener">Google Maps</a> ｜ <a class="inline-link" href="https://www.instagram.com/container_no.7_penghu/" target="_blank" rel="noopener">Instagram</a>',
+    footer_brand:"Container No.7 ｜ Open-air bar, Magong, Penghu",
+    footer_company:"Operated by Yi Shan Shui Co., Ltd. ｜ Tax ID 96160460",
+    footer_addr:"No. 11015, Magong City, Penghu County 880 ｜ 18:07–00:07 (closed Mon & Thu)",
+    footer_copy:"© 2026 Yi Shan Shui Co., Ltd. ｜ All rights reserved.",
+    status_open:"Open · {t} left", status_closed_opens:"Closed · opens in {t}", status_closed:"Closed", status_loading:"Loading…"
+  },
+  ja: {
+    doc_title: "七號貨櫃 ｜ Container No.7 ｜ 台湾・澎湖馬公のオープンエア・バー",
+    hero_sub: "七號貨櫃 ｜ 海辺でひと息",
+    closed_days: "毎週月・木曜定休",
+    nav_eats:"お食事", nav_cocktails:"カクテル", nav_soda:"ソーダ", nav_kombucha:"コンブチャ", nav_visit:"アクセス", nav_about:"店舗情報",
+    sec_eats:"お食事", sec_cocktails:"カクテル", sec_soda:"アングリー・ソーダ", sec_kombucha:"コンブチャ", sec_visit:"アクセス", sec_about:"店舗情報",
+    note_eats:"じっくり煮込んだ、深い旨み", note_soda:"ノンアルコール・果実の泡", note_kombucha:"澎湖の風茹 × サボテンの実・自然発酵・ノンアルコール",
+    taste_sour:"酸味", taste_sweet:"甘味", taste_strength:"強さ", taste_body:"ボディ",
+    ingredients_label:"材料", story_hint:"ストーリー", spicy_mild:"ほんのり辛い",
+    lbl_hours:"HOURS ｜ 営業時間", lbl_address:"ADDRESS ｜ 住所", lbl_contact:"CONTACT ｜ ご予約",
+    lbl_services:"SERVICES ｜ サービス内容", lbl_company:"COMPANY ｜ 運営会社", lbl_contact2:"CONTACT ｜ お問い合わせ",
+    visit_closed_sub:"月・木曜定休",
+    address_value:"台湾 澎湖県馬公市 11015番地（〒880）",
+    maps_btn:"GOOGLE MAPS →",
+    about_services_body:"当店では店内飲食をご提供しております。お食事、こだわりのカクテル、ノンアルコール・ソーダ、コンブチャ、そしてオープンエアでの食事体験をお楽しみいただけます。",
+    about_services_list:["お食事（秘伝の牛肉麺・牛肉飯）","手作りカクテル（10種）","ノンアルコール・ソーダ（アングリー・シリーズ8種）","ノンアルコール・コンブチャ（澎湖の風茹 × サボテンの実）","オープンエアでの食事体験"],
+    company_name:"依山水有限公司", company_name_sub:"YI SHAN SHUI CO., LTD.",
+    tax_line:"統一番号：96160460",
+    about_official:"本サイトは、依山水有限公司が運営する CONTAINER NO.7（七號貨櫃）の公式サイトです。",
+    about_phone:'お電話でのご予約：<a class="inline-link" href="tel:+886963059889">0963-059-889</a>',
+    about_address:"店舗住所：台湾 澎湖県馬公市 11015番地（〒880）",
+    about_hours:"営業時間：毎日 18:07—00:07、月・木曜定休",
+    about_links:'<a class="inline-link" href="https://maps.app.goo.gl/Z4W8LbQ4JX9krFeu7" target="_blank" rel="noopener">Google Maps で見る</a> ｜ <a class="inline-link" href="https://www.instagram.com/container_no.7_penghu/" target="_blank" rel="noopener">Instagram</a>',
+    footer_brand:"七號貨櫃 ｜ 澎湖馬公のオープンエア・バー",
+    footer_company:"運営 ｜ 依山水有限公司 ｜ 統一番号 96160460",
+    footer_addr:"台湾 澎湖県馬公市 11015番地（〒880）｜ 18:07—00:07（月・木曜定休）",
+    footer_copy:"© 2026 依山水有限公司 ｜ All rights reserved.",
+    status_open:"営業中 · 閉店まであと {t}", status_closed_opens:"定休中 · {t}後に開店", status_closed:"定休中", status_loading:"読み込み中…"
+  },
+  ko: {
+    doc_title: "7번 컨테이너 ｜ Container No.7 ｜ 대만 펑후 마궁 오픈에어 바",
+    hero_sub: "7번 컨테이너 ｜ 바닷가에서 잠시 칠(chill)",
+    closed_days: "매주 월・목 휴무",
+    nav_eats:"푸드", nav_cocktails:"칵테일", nav_soda:"소다", nav_kombucha:"콤부차", nav_visit:"오시는 길", nav_about:"소개",
+    sec_eats:"푸드", sec_cocktails:"칵테일", sec_soda:"앵그리 소다", sec_kombucha:"콤부차", sec_visit:"오시는 길", sec_about:"매장 정보",
+    note_eats:"오래 졸여 깊고 진하게", note_soda:"무알코올・과일향 탄산", note_kombucha:"펑후 펑루 × 선인장 열매・자연 발효・무알코올",
+    taste_sour:"신맛", taste_sweet:"단맛", taste_strength:"강도", taste_body:"바디",
+    ingredients_label:"재료", story_hint:"스토리", spicy_mild:"약간 매콤",
+    lbl_hours:"HOURS ｜ 영업시간", lbl_address:"ADDRESS ｜ 주소", lbl_contact:"CONTACT ｜ 예약",
+    lbl_services:"SERVICES ｜ 서비스 안내", lbl_company:"COMPANY ｜ 운영 주체", lbl_contact2:"CONTACT ｜ 연락처",
+    visit_closed_sub:"월・목 휴무",
+    address_value:"대만 펑후현 마궁시 11015 (우편번호 880)",
+    maps_btn:"GOOGLE MAPS →",
+    about_services_body:"매장에서 직접 제공하는 다이닝 서비스로, 메인 요리・시그니처 칵테일・무알코올 탄산음료・콤부차, 그리고 오픈에어 바의 다이닝 경험을 만나보실 수 있습니다.",
+    about_services_list:["메인 요리(비전 우육면・비전 우육밥)","핸드메이드 시그니처 칵테일(10종)","무알코올 탄산음료(앵그리 소다 8종)","무알코올 콤부차(펑후 펑루 × 선인장 열매)","오픈에어 다이닝 경험"],
+    company_name:"Yi Shan Shui Co., Ltd.", company_name_sub:"이산수이 유한공사",
+    tax_line:"사업자등록번호: 96160460",
+    about_official:"본 웹사이트는 Yi Shan Shui Co., Ltd.가 운영하는 CONTAINER NO.7(7번 컨테이너)의 공식 웹사이트입니다.",
+    about_phone:'전화 예약: <a class="inline-link" href="tel:+886963059889">0963-059-889</a>',
+    about_address:"매장 주소: 대만 펑후현 마궁시 11015 (우편번호 880)",
+    about_hours:"영업시간: 매일 18:07—00:07, 월・목 휴무",
+    about_links:'<a class="inline-link" href="https://maps.app.goo.gl/Z4W8LbQ4JX9krFeu7" target="_blank" rel="noopener">Google Maps 위치</a> ｜ <a class="inline-link" href="https://www.instagram.com/container_no.7_penghu/" target="_blank" rel="noopener">Instagram</a>',
+    footer_brand:"7번 컨테이너 ｜ 대만 펑후 마궁 오픈에어 바",
+    footer_company:"운영 주체 ｜ Yi Shan Shui Co., Ltd. ｜ 사업자등록번호 96160460",
+    footer_addr:"대만 펑후현 마궁시 11015 (우편번호 880) ｜ 18:07—00:07 (월・목 휴무)",
+    footer_copy:"© 2026 Yi Shan Shui Co., Ltd. ｜ All rights reserved.",
+    status_open:"영업 중 · 마감까지 {t}", status_closed_opens:"휴무 · {t} 후 오픈", status_closed:"휴무", status_loading:"불러오는 중…"
   }
+};
+
+let lang = detectLang();
+function detectLang(){
+  const url = new URLSearchParams(location.search).get('lang');
+  if (SUPPORTED.includes(url)) return url;
+  let saved = null; try { saved = localStorage.getItem('c7lang'); } catch(e){}
+  if (SUPPORTED.includes(saved)) return saved;
+  const n = (navigator.language || 'en').toLowerCase();
+  if (n.startsWith('zh')) return 'zh';
+  if (n.startsWith('ja')) return 'ja';
+  if (n.startsWith('ko')) return 'ko';
+  return 'en';
+}
+function t(key){
+  for (const l of [lang,'en','zh']) { const v = I18N[l] && I18N[l][key]; if (v != null) return v; }
+  return '';
+}
+function trItem(section, key){
+  for (const l of [lang,'en','zh']) { const v = MENU[l] && MENU[l][section] && MENU[l][section][key]; if (v != null) return v; }
+  return null;
+}
+
+// ============ MENU (per-language item translations) ============
+const MENU = {
+  zh: {
+    eats: {
+      "Secret Recipe Braised Beef Noodles": { name:"秘藏牛肉麵", tag:"慢燉入味，秘藏濃香", note:"每一口，都是厚實而溫潤的滿足。" },
+      "Secret Recipe Braised Beef Rice":    { name:"秘藏牛肉飯", tag:"慢燉入味，秘藏濃香", note:"一碗，藏住時間熬出的風味。" }
+    },
+    cocktails: {
+      "Bondi Beach": { name:"邦代海灘", ingredients:["蘭姆酒","水蜜桃利口酒","柑橘香甜酒","檸檬","蘇打"], story:"2017 年在澳洲邦代海灘認識一個義大利人 Frenco，原本以為很教父，但熱情又多話的 Frenco 請了我一杯性感海灘。可能以為我酒量不好，接著就像電影一樣——每個來自異鄉的人聚在一起，一定都會討論自己的家鄉。Frenco 也不意外。聽著他那義式英文，又面對那藍天碧海，真是個美好的一天。" },
+      "Apollo": { name:"太陽神", ingredients:["龍舌蘭","澎湖仙人掌酒","紅酒","檸檬"], story:"使用澎湖當地仙人掌酒，搭配紅酒襯托果香香氣，結合龍舌蘭清新草本香。簡單不失層次，非常適合在夏天的海灘飲用。" },
+      "Casino": { name:"CASINO", ingredients:["琴酒","葡萄柚香甜酒","君度橙酒","甜香艾酒","檸檬"], story:"第一口清新的風味，迎來中韻淡淡的草本香，接著一鼓作氣打出好牌——讓你到家還默默回味著這勝利尾韻。" },
+      "Ode of the River Goddess": { name:"洛神賦", ingredients:["白酒","君度橙酒","洛神花"], story:"翩若驚鴻，她自洛水那端凌波而來，羅襪不曾沾塵。\n洛神花是羅裙的緋、是回眸時將融未融的那一點紅。\n恨只恨人神道殊——\n我便將這一眼，斟進杯裡；\n可望而不可即的，至少還可飲。" },
+      "Sexual Transformation Sangria": { name:"性轉山格利亞", ingredients:["紅酒","白蘭地","香艾酒","柳橙","覆盆莓"], story:"傳統的 Sangria 躺在西班牙午後的庭院，輕盈、果香、好入口。\n我把白蘭地和香艾酒推進去，它就站起來了——\n同樣的紅酒、柳橙、莓果，換個骨架，就是另一個人。" },
+      "Daydream": { name:"白日夢", ingredients:["白酒","香艾酒","葡夢香甜酒","櫻桃利口酒"], story:"午後三點，太陽斜斜地落在桌邊。\n沒在做什麼，也沒有想做什麼。\n葡萄與櫻桃的香氣繞過來，像一段沒打算結束的慢板，把人從這裡，輕輕推到夢的那邊。" },
+      "Angry Charlie": { name:"生氣的查理", ingredients:["黑刺李琴酒","琴酒","杏仁香甜酒","檸檬","蘇打"], story:"查理今天又在氣了。\n大概是電梯太擠、咖啡太燙、或某個沒回的訊息。\n但他不知道的是——黑刺李會把火氣一點點化開，杏仁是哄人的，蘇打是讓他嘆出那口氣的。\n喝完，他大概會忘記在氣什麼。" },
+      "Seaman Bishop": { name:"水手畢夏普", ingredients:["蘭姆酒","伏特加","琴酒","君度橙酒","梅酒","百香果"], story:"大海上沒有教堂，水手有水手的祈禱。\n蘭姆酒是甲板、琴酒是風、梅酒是岸上的記憶，百香果是熱帶夜裡那束突然出現的光。\n一杯下去你就懂——為什麼遠航的人總要對著星星說話。" },
+      "Childhood Sweethearts": { name:"青梅竹馬", ingredients:["梅酒","白蘭地","君度橙酒","青蘋果"], story:"不是每個青梅竹馬最後都在一起。\n但那個夏天的午後、那條彎彎的小巷、那聲喊你名字的口吻，還是會被收進記憶最暖的角落。\n青蘋果是初遇的酸，梅酒是時間的甜，白蘭地是後來才懂的溫度。" },
+      "Queen Bee": { name:"女王蜂", ingredients:["威士忌","巨峰葡萄香甜酒","君度橙酒","檸檬"], story:"不是每座山都需要被征服。\n有些山就站在那裡，自成風景。\n四玫瑰是她肩上的盔甲，巨峰葡萄是她裙擺的紫色，你只能仰望——\n然後喝下這口烈，記住自己曾經這樣抬頭過。" }
+    },
+    sodas: {
+      "Angry Kyoho Grape":"巨峰葡萄好氣", "Angry Cactus":"仙人掌好氣", "Angry Raspberry":"覆盆莓好氣",
+      "Angry Grapefruit":"葡萄柚好氣", "Angry Passion Fruit":"百香好氣", "Angry Mulberry":"桑椹好氣",
+      "Angry Mix":"綜合好氣", "Angry Special":"特調好氣"
+    },
+    kombucha: {
+      "Fengru & Cactus Kombucha": { name:"風茹仙人掌康普茶", sub:"無酒精" }
+    }
+  },
+  en: {
+    eats: {
+      "Secret Recipe Braised Beef Noodles": { name:"Secret Recipe Braised Beef Noodles", tag:"Slow-Braised. Deeply Savory.", note:"Rich comfort in every bite." },
+      "Secret Recipe Braised Beef Rice":    { name:"Secret Recipe Braised Beef Rice", tag:"Slow-Braised. Deeply Savory.", note:"A bowl of flavor crafted with time." }
+    },
+    cocktails: {
+      "Bondi Beach": { name:"Bondi Beach", ingredients:["Rum","Peach Liqueur","Curaçao","Lemon","Soda"], story:"In 2017, on Bondi Beach in Australia, I met an Italian named Frenco. I first took him for a Godfather type — but the warm, talkative Frenco bought me a Sex on the Beach, probably guessing I couldn't hold my drink. Then, just like in a movie, everyone far from home ends up talking about where they came from. Frenco was no exception. Listening to his Italian-accented English, facing that blue sky and sea — it was a beautiful day." },
+      "Apollo": { name:"Apollo", ingredients:["Tequila","Penghu Cactus Liqueur","Red Wine","Lemon"], story:"Made with Penghu's local cactus liqueur, red wine lifting the fruity aroma, and tequila's fresh herbal note. Simple yet layered — perfect for a summer evening by the sea." },
+      "Casino": { name:"Casino", ingredients:["Gin","Grapefruit Liqueur","Cointreau","Sweet Vermouth","Lemon"], story:"A crisp first sip, then a faint herbal note at the midpalate, then it plays its winning hand in one sweep — leaving you quietly savoring that victory long after you're home." },
+      "Ode of the River Goddess": { name:"Ode of the River Goddess", ingredients:["White Wine","Cointreau","Hibiscus"], story:"Light as a startled swan, she glides across the Luo River, her silk stockings never touching dust.\nThe hibiscus is the crimson of her trailing robe — the half-melted red of a backward glance.\nIf only gods and mortals did not walk separate ways —\nso I pour that single glance into a glass;\nwhat cannot be reached can at least be drunk." },
+      "Sexual Transformation Sangria": { name:"Sexual Transformation Sangria", ingredients:["Red Wine","Brandy","Vermouth","Orange","Raspberry"], story:"Traditional Sangria reclines in a Spanish afternoon courtyard — light, fruity, easy.\nI pushed in brandy and vermouth, and it stood up —\nthe same red wine, orange, berries, but with a new spine, it became someone else entirely." },
+      "Daydream": { name:"Daydream", ingredients:["White Wine","Vermouth","Pavan","Cherry Liqueur"], story:"Three in the afternoon, sunlight slanting onto the table's edge.\nDoing nothing, wanting nothing.\nThe scent of grape and cherry drifts over, like an adagio with no intention of ending,\ngently nudging you from here to the other side of a dream." },
+      "Angry Charlie": { name:"Angry Charlie", ingredients:["Sloe Gin","Gin","Amaretto","Lemon","Soda"], story:"Charlie's angry again today.\nMaybe the elevator was too crowded, the coffee too hot, or some message left unanswered.\nBut what he doesn't know is —\nthe sloe gin dissolves his temper bit by bit, the amaretto coaxes him,\nthe soda lets him sigh it all out.\nBy the last sip, he'll probably forget what he was angry about." },
+      "Seaman Bishop": { name:"Seaman Bishop", ingredients:["Rum","Vodka","Gin","Cointreau","Plum Wine","Passion Fruit"], story:"There are no churches at sea; sailors have their own prayers.\nRum is the deck, gin is the wind, plum wine is the memory of shore,\npassion fruit is that sudden beam of light in the tropical night.\nOne sip and you'll understand —\nwhy those who sail far always talk to the stars." },
+      "Childhood Sweethearts": { name:"Childhood Sweethearts", ingredients:["Plum Wine","Brandy","Cointreau","Green Apple"], story:"Not every childhood sweetheart ends up together.\nBut that summer afternoon, that winding alley, the way your name was called —\nthey're still tucked into the warmest corner of memory.\nGreen apple is the tartness of first meeting, plum wine the sweetness of time,\nbrandy the warmth understood only later." },
+      "Queen Bee": { name:"Queen Bee", ingredients:["Whiskey","Kyoho Grape Liqueur","Cointreau","Lemon"], story:"Not every mountain needs to be conquered.\nSome just stand there, a landscape unto themselves.\nFour Roses is the armor on her shoulders, Kyoho grape the purple of her gown,\nyou can only look up —\nthen drink down this fire, and remember you once held your head this high." }
+    },
+    sodas: {
+      "Angry Kyoho Grape":"Angry Kyoho Grape", "Angry Cactus":"Angry Cactus", "Angry Raspberry":"Angry Raspberry",
+      "Angry Grapefruit":"Angry Grapefruit", "Angry Passion Fruit":"Angry Passion Fruit", "Angry Mulberry":"Angry Mulberry",
+      "Angry Mix":"Angry Mix", "Angry Special":"Angry Special"
+    },
+    kombucha: {
+      "Fengru & Cactus Kombucha": { name:"Fengru & Cactus Kombucha", sub:"Non-alcoholic" }
+    }
+  },
+  ja: {
+    eats: {
+      "Secret Recipe Braised Beef Noodles": { name:"秘伝の牛肉麺", tag:"じっくり煮込んだ、秘伝の深い香り", note:"ひと口ごとに、力強くやさしい満足を。" },
+      "Secret Recipe Braised Beef Rice":    { name:"秘伝の牛肉飯", tag:"じっくり煮込んだ、秘伝の深い香り", note:"一杯に、時間が煮出した風味を閉じ込めて。" }
+    },
+    cocktails: {
+      "Bondi Beach": { name:"ボンダイ・ビーチ", ingredients:["ラム","ピーチ・リキュール","キュラソー","レモン","ソーダ"], story:"2017年、オーストラリアのボンダイ・ビーチで、フレンコというイタリア人と出会った。最初はゴッドファーザーみたいな男かと思ったけれど、陽気でおしゃべりなフレンコは、わたしに一杯のセックス・オン・ザ・ビーチをおごってくれた。きっと酒に弱いと思われたのだろう。それからは、まるで映画のように――異国にいる者どうしが集まれば、必ず故郷の話になる。フレンコも例外ではなかった。イタリア訛りの英語に耳を傾けながら、あの青い空と海を眺める。本当に、素晴らしい一日だった。" },
+      "Apollo": { name:"アポロ（太陽神）", ingredients:["テキーラ","澎湖サボテン酒","赤ワイン","レモン"], story:"澎湖の地サボテン酒を使い、赤ワインで果実の香りを引き立て、テキーラの爽やかなハーブの風味を重ねた一杯。シンプルでいて奥行きがあり、夏の海辺の夕べにぴったりです。" },
+      "Casino": { name:"カジノ", ingredients:["ジン","グレープフルーツ・リキュール","コアントロー","スイート・ベルモット","レモン"], story:"ひと口めは爽やかに、中盤にはほのかなハーブの香り、そして一気に勝負の手を打つように――家に着いてもなお、その勝利の余韻をそっと味わってしまう。" },
+      "Ode of the River Goddess": { name:"洛神賦", ingredients:["白ワイン","コアントロー","ハイビスカス（洛神花）"], story:"翩として驚鴻のごとく、彼女は洛水の彼方から波を踏んで現れる。絹の靴は、ついぞ塵に触れない。\nハイビスカスは羅裙の緋――振り返るその刹那、溶けきらぬひとひらの紅。\n恨むらくは、人と神の道の異なること――\nならばこの一瞥を、盃に注ごう。\n望めども届かぬものも、せめて飲むことはできるのだから。" },
+      "Sexual Transformation Sangria": { name:"性転換サングリア", ingredients:["赤ワイン","ブランデー","ベルモット","オレンジ","ラズベリー"], story:"伝統のサングリアは、スペインの午後の中庭に横たわる――軽やかで、果実味豊かで、するりと飲める。\nそこへブランデーとベルモットを押し込むと、それはすっと立ち上がった――\n同じ赤ワイン、オレンジ、ベリー。骨格を変えれば、もう別の誰かだ。" },
+      "Daydream": { name:"白昼夢", ingredients:["白ワイン","ベルモット","パヴァン","チェリー・リキュール"], story:"午後三時、陽が斜めにテーブルの端へ落ちる。\n何をするでもなく、何をしたいわけでもなく。\nぶどうとチェリーの香りがふわりと巡り、終わるあてのないアダージョのように、ここから夢の向こうへと、人をそっと押しやっていく。" },
+      "Angry Charlie": { name:"怒れるチャーリー", ingredients:["スロー・ジン","ジン","アマレット","レモン","ソーダ"], story:"チャーリーは今日もまた怒っている。\nたぶん、エレベーターが混んでいたか、コーヒーが熱すぎたか、それとも返ってこないメッセージのせいか。\nでも彼は知らない――スロー・ジンがその苛立ちを少しずつ溶かし、アマレットがなだめ、ソーダがその溜息をそっと吐き出させてくれることを。\n飲み終えるころには、何に怒っていたのかも、きっと忘れているだろう。" },
+      "Seaman Bishop": { name:"シーマン・ビショップ", ingredients:["ラム","ウォッカ","ジン","コアントロー","梅酒","パッションフルーツ"], story:"海の上に教会はない。船乗りには船乗りの祈りがある。\nラムは甲板、ジンは風、梅酒は岸辺の記憶、パッションフルーツは熱帯の夜にふと差す一筋の光。\nひと口で分かる――なぜ遠くへ航る者は、いつも星に語りかけるのかを。" },
+      "Childhood Sweethearts": { name:"幼馴染", ingredients:["梅酒","ブランデー","コアントロー","青りんご"], story:"幼馴染が、みな最後に結ばれるわけではない。\nそれでも、あの夏の午後、あの曲がりくねった路地、名前を呼んだあの声音は、記憶のいちばん暖かな片隅に、今もそっとしまわれている。\n青りんごは出会いの酸っぱさ、梅酒は時の甘さ、ブランデーは後になってようやく分かる温もり。" },
+      "Queen Bee": { name:"女王蜂", ingredients:["ウイスキー","巨峰リキュール","コアントロー","レモン"], story:"すべての山が、征服されねばならぬわけではない。\nただそこに立ち、それ自体がひとつの風景となる山もある。\nフォア・ローゼズは彼女の肩を守る鎧、巨峰は裾を彩る紫。あなたはただ仰ぎ見るほかない――\nそしてこの強い一杯を飲み干し、かつて自分もこうして顔を上げたことを、胸に刻むのだ。" }
+    },
+    sodas: {
+      "Angry Kyoho Grape":"巨峰のアングリー", "Angry Cactus":"サボテンのアングリー", "Angry Raspberry":"ラズベリーのアングリー",
+      "Angry Grapefruit":"グレープフルーツのアングリー", "Angry Passion Fruit":"パッションフルーツのアングリー", "Angry Mulberry":"桑の実のアングリー",
+      "Angry Mix":"ミックス・アングリー", "Angry Special":"スペシャル・アングリー"
+    },
+    kombucha: {
+      "Fengru & Cactus Kombucha": { name:"風茹サボテン・コンブチャ", sub:"ノンアルコール" }
+    }
+  },
+  ko: {
+    eats: {
+      "Secret Recipe Braised Beef Noodles": { name:"비전 우육면", tag:"오래 졸여 깊고 진한 비법의 맛", note:"한 입마다 묵직하고 따뜻한 만족감." },
+      "Secret Recipe Braised Beef Rice":    { name:"비전 우육밥", tag:"오래 졸여 깊고 진한 비법의 맛", note:"한 그릇에, 시간이 끓여낸 풍미를 담았습니다." }
+    },
+    cocktails: {
+      "Bondi Beach": { name:"본다이 비치", ingredients:["럼","피치 리큐어","쿠라소","레몬","소다"], story:"2017년 호주 본다이 비치에서 프렌코라는 이탈리아 남자를 만났다. 처음엔 영락없는 마피아 두목인 줄 알았는데, 다정하고 말 많은 프렌코는 나에게 섹스 온 더 비치 한 잔을 사주었다. 아마 내 주량이 약하다고 본 모양이다. 그러고는 꼭 영화처럼——타향에서 온 사람들이 모이면 결국 저마다 고향 이야기를 꺼내기 마련이다. 프렌코도 예외는 아니었다. 그 이탈리아식 영어에 귀를 기울이며, 푸른 하늘과 바다를 마주한——참으로 근사한 하루였다." },
+      "Apollo": { name:"아폴로 (태양신)", ingredients:["데킬라","펑후 선인장주","레드 와인","레몬"], story:"펑후 현지의 선인장주를 베이스로, 레드 와인이 과일향을 끌어올리고, 데킬라가 산뜻한 허브 노트를 더했습니다. 단순하면서도 층이 살아 있어, 여름날 바닷가에서 즐기기에 더없이 좋습니다." },
+      "Casino": { name:"카지노", ingredients:["진","자몽 리큐어","쿠앵트로","스위트 베르무트","레몬"], story:"첫 모금의 산뜻함, 이어 중반에 은은히 번지는 허브 향, 그리고 단숨에 내미는 승부의 한 수——집에 도착해서도 그 승리의 여운을 가만히 곱씹게 됩니다." },
+      "Ode of the River Goddess": { name:"낙신부 (洛神賦)", ingredients:["화이트 와인","쿠앵트로","히비스커스"], story:"놀란 기러기처럼 사뿐히, 그녀는 낙수 저편에서 물결을 밟고 다가오니, 비단 버선엔 티끌 하나 묻지 않았다.\n히비스커스는 끌리는 치맛자락의 다홍, 돌아보던 그 순간 녹을 듯 녹지 않던 한 점의 붉음.\n다만 한스러운 것은 사람과 신의 길이 다르다는 것——\n하여 나는 그 한 눈길을 잔에 따른다.\n바라볼 수는 있으나 닿을 수 없는 것, 적어도 마실 수는 있으니." },
+      "Sexual Transformation Sangria": { name:"성전환 상그리아", ingredients:["레드 와인","브랜디","베르무트","오렌지","라즈베리"], story:"전통적인 상그리아는 스페인의 오후 정원에 비스듬히 누워 있다. 가볍고, 과일향 가득하고, 술술 넘어가는.\n나는 거기에 브랜디와 베르무트를 밀어 넣었고, 그러자 그것은 일어섰다——\n똑같은 레드 와인, 오렌지, 베리인데도, 골격을 바꾸니 전혀 다른 사람이 되었다." },
+      "Daydream": { name:"백일몽", ingredients:["화이트 와인","베르무트","파반","체리 리큐어"], story:"오후 세 시, 햇살이 비스듬히 테이블 가장자리에 내려앉는다.\n무얼 하고 있지도, 무얼 하고 싶지도 않다.\n포도와 체리의 향이 감돌아 온다. 끝낼 생각이 없는 한 소절의 안단테처럼, 사람을 이곳에서 꿈의 저편으로 가만히 밀어 보낸다." },
+      "Angry Charlie": { name:"앵그리 찰리", ingredients:["슬로 진","진","아마레토","레몬","소다"], story:"찰리는 오늘도 또 화가 났다.\n엘리베이터가 너무 붐볐거나, 커피가 너무 뜨거웠거나, 아니면 답장 없는 어떤 메시지 때문이겠지.\n하지만 그가 모르는 사실이 있다——슬로 진은 그 화를 조금씩 풀어 주고, 아마레토는 그를 달래며, 소다는 그 한숨을 토해 내게 한다.\n다 마시고 나면, 아마 무엇 때문에 화났는지조차 잊어버릴 것이다." },
+      "Seaman Bishop": { name:"시맨 비숍 (선원의 주교)", ingredients:["럼","보드카","진","쿠앵트로","매실주","패션프루트"], story:"바다 위엔 교회가 없으니, 선원에겐 선원만의 기도가 있다.\n럼은 갑판, 진은 바람, 매실주는 뭍에 두고 온 기억, 패션프루트는 열대의 밤에 문득 비치는 한 줄기 빛.\n한 잔 들이켜면 이내 알게 된다——먼 항해를 떠난 이들이 어째서 늘 별을 향해 말을 거는지." },
+      "Childhood Sweethearts": { name:"소꿉친구", ingredients:["매실주","브랜디","쿠앵트로","청사과"], story:"모든 소꿉친구가 끝내 함께하는 것은 아니다.\n그래도 그해 여름의 오후, 그 굽이진 골목, 내 이름을 부르던 그 목소리만은 기억의 가장 따뜻한 자리에 고이 간직된다.\n청사과는 첫 만남의 새콤함, 매실주는 세월의 달콤함, 브랜디는 한참 뒤에야 알게 된 온도." },
+      "Queen Bee": { name:"퀸 비 (여왕벌)", ingredients:["위스키","교호 포도 리큐어","쿠앵트로","레몬"], story:"모든 산을 정복해야 하는 것은 아니다.\n어떤 산은 그저 그 자리에 서서, 스스로 하나의 풍경이 된다.\n포 로지스는 그녀 어깨 위의 갑옷, 교호 포도는 치맛자락의 보라.\n당신은 그저 올려다볼 수밖에 없다——그리고 이 독한 한 모금을 삼키며, 한때 그렇게 고개를 들었던 자신을 기억하는 것이다." }
+    },
+    sodas: {
+      "Angry Kyoho Grape":"앵그리 교호 포도", "Angry Cactus":"앵그리 선인장", "Angry Raspberry":"앵그리 라즈베리",
+      "Angry Grapefruit":"앵그리 자몽", "Angry Passion Fruit":"앵그리 패션프루트", "Angry Mulberry":"앵그리 오디",
+      "Angry Mix":"앵그리 믹스", "Angry Special":"앵그리 스페셜"
+    },
+    kombucha: {
+      "Fengru & Cactus Kombucha": { name:"펑루 선인장 콤부차", sub:"무알코올" }
+    }
+  }
+};
+
+// ============ DATA (language-neutral) ============
+const eats = [
+  { key:"Secret Recipe Braised Beef Noodles", price:280, img:"img/beef-noodles.jpg" },
+  { key:"Secret Recipe Braised Beef Rice",    price:280, img:"img/beef-rice.jpg" }
 ];
 
 const cocktails = [
-  {
-    cn: "邦代海灘", en: "Bondi Beach",
-    vol: "105ml", abv: "16%", price: 300,
-    taste: { acid: 2, sweet: 4, alc: 2, body: 2 },
-    img: "img/cocktails/cocktail-01-bondi.jpg",
-    ingredients: ["蘭姆酒", "水蜜桃利口酒", "柑橘香甜酒", "檸檬", "蘇打"],
-    ingredientsEn: ["Rum", "Peach Liqueur", "Curaçao", "Lemon", "Soda"],
-    storyEn: "In 2017, on Bondi Beach in Australia, I met an Italian named Frenco. I first took him for a Godfather type — but the warm, talkative Frenco bought me a Sex on the Beach, probably guessing I couldn't hold my drink. Then, just like in a movie, everyone far from home ends up talking about where they came from. Frenco was no exception. Listening to his Italian-accented English, facing that blue sky and sea — it was a beautiful day.",
-    story: "2017 年在澳洲邦代海灘認識一個義大利人 Frenco，原本以為很教父，但熱情又多話的 Frenco 請了我一杯性感海灘。可能以為我酒量不好，接著就像電影一樣——每個來自異鄉的人聚在一起，一定都會討論自己的家鄉。Frenco 也不意外。聽著他那義式英文，又面對那藍天碧海，真是個美好的一天。"
-  },
-  {
-    cn: "太陽神", en: "Apollo",
-    vol: "110ml", abv: "20%", price: 300,
-    taste: { acid: 2, sweet: 3, alc: 4, body: 3 },
-    img: "img/cocktails/cocktail-02-apollo.jpg",
-    ingredients: ["龍舌蘭", "澎湖仙人掌酒", "紅酒", "檸檬"],
-    ingredientsEn: ["Tequila", "Penghu Cactus Liqueur", "Red Wine", "Lemon"],
-    storyEn: "Made with Penghu's local cactus liqueur, red wine lifting the fruity aroma, and tequila's fresh herbal note. Simple yet layered — perfect for a summer evening by the sea.",
-    story: "使用澎湖當地仙人掌酒，搭配紅酒襯托果香香氣，結合龍舌蘭清新草本香。簡單不失層次，非常適合在夏天的海灘飲用。"
-  },
-  {
-    cn: "CASINO", en: "Casino",
-    vol: "130ml", abv: "23%", price: 350,
-    taste: { acid: 2, sweet: 3, alc: 4, body: 4 },
-    img: "img/cocktails/cocktail-03-casino.jpg",
-    ingredients: ["琴酒", "葡萄柚香甜酒", "君度橙酒", "甜香艾酒", "檸檬"],
-    ingredientsEn: ["Gin", "Grapefruit Liqueur", "Cointreau", "Sweet Vermouth", "Lemon"],
-    storyEn: "A crisp first sip, then a faint herbal note at the midpalate, then it plays its winning hand in one sweep — leaving you quietly savoring that victory long after you're home.",
-    story: "第一口清新的風味，迎來中韻淡淡的草本香，接著一鼓作氣打出好牌——讓你到家還默默回味著這勝利尾韻。"
-  },
-  {
-    cn: "洛神賦", en: "Ode of the River Goddess",
-    vol: "90ml", abv: "12%", price: 300,
-    taste: { acid: 4, sweet: 3.5, alc: 1, body: 3 },
-    img: "img/cocktails/cocktail-04-hibiscus.jpg",
-    ingredients: ["白酒", "君度橙酒", "洛神花"],
-    ingredientsEn: ["White Wine", "Cointreau", "Hibiscus"],
-    storyEn: "Light as a startled swan, she glides across the Luo River, her silk stockings never touching dust.\nThe hibiscus is the crimson of her trailing robe — the half-melted red of a backward glance.\nIf only gods and mortals did not walk separate ways —\nso I pour that single glance into a glass;\nwhat cannot be reached can at least be drunk.",
-    story: "翩若驚鴻，她自洛水那端凌波而來，羅襪不曾沾塵。\n洛神花是羅裙的緋、是回眸時將融未融的那一點紅。\n恨只恨人神道殊——\n我便將這一眼，斟進杯裡；\n可望而不可即的，至少還可飲。"
-  },
-  {
-    cn: "性轉山格利亞", en: "Sexual Transformation Sangria",
-    vol: "145ml", abv: "11%", price: 350,
-    taste: { acid: 3, sweet: 2, alc: 1, body: 2 },
-    img: "img/cocktails/cocktail-05-sangria.jpg",
-    ingredients: ["紅酒", "白蘭地", "香艾酒", "柳橙", "覆盆莓"],
-    ingredientsEn: ["Red Wine", "Brandy", "Vermouth", "Orange", "Raspberry"],
-    storyEn: "Traditional Sangria reclines in a Spanish afternoon courtyard — light, fruity, easy.\nI pushed in brandy and vermouth, and it stood up —\nthe same red wine, orange, berries, but with a new spine, it became someone else entirely.",
-    story: "傳統的 Sangria 躺在西班牙午後的庭院，輕盈、果香、好入口。\n我把白蘭地和香艾酒推進去，它就站起來了——\n同樣的紅酒、柳橙、莓果，換個骨架，就是另一個人。"
-  },
-  {
-    cn: "白日夢", en: "Daydream",
-    vol: "110ml", abv: "18%", price: 350,
-    taste: { acid: 1, sweet: 4, alc: 3, body: 4 },
-    img: "img/cocktails/cocktail-06-daydream.jpg",
-    ingredients: ["白酒", "香艾酒", "葡夢香甜酒", "櫻桃利口酒"],
-    ingredientsEn: ["White Wine", "Vermouth", "Pavan", "Cherry Liqueur"],
-    storyEn: "Three in the afternoon, sunlight slanting onto the table's edge.\nDoing nothing, wanting nothing.\nThe scent of grape and cherry drifts over, like an adagio with no intention of ending,\ngently nudging you from here to the other side of a dream.",
-    story: "午後三點，太陽斜斜地落在桌邊。\n沒在做什麼，也沒有想做什麼。\n葡萄與櫻桃的香氣繞過來，像一段沒打算結束的慢板，把人從這裡，輕輕推到夢的那邊。"
-  },
-  {
-    cn: "生氣的查理", en: "Angry Charlie",
-    vol: "85ml", abv: "15%", price: 350,
-    taste: { acid: 2, sweet: 3, alc: 2, body: 2 },
-    img: "img/cocktails/cocktail-07-charlie.jpg",
-    ingredients: ["黑刺李琴酒", "琴酒", "杏仁香甜酒", "檸檬", "蘇打"],
-    ingredientsEn: ["Sloe Gin", "Gin", "Amaretto", "Lemon", "Soda"],
-    storyEn: "Charlie's angry again today.\nMaybe the elevator was too crowded, the coffee too hot, or some message left unanswered.\nBut what he doesn't know is —\nthe sloe gin dissolves his temper bit by bit, the amaretto coaxes him,\nthe soda lets him sigh it all out.\nBy the last sip, he'll probably forget what he was angry about.",
-    story: "查理今天又在氣了。\n大概是電梯太擠、咖啡太燙、或某個沒回的訊息。\n但他不知道的是——黑刺李會把火氣一點點化開，杏仁是哄人的，蘇打是讓他嘆出那口氣的。\n喝完，他大概會忘記在氣什麼。"
-  },
-  {
-    cn: "水手畢夏普", en: "Seaman Bishop",
-    vol: "140ml", abv: "25%", price: 400,
-    taste: { acid: 3, sweet: 3, alc: 5, body: 5 },
-    img: "img/cocktails/cocktail-08-bishop.jpg",
-    ingredients: ["蘭姆酒", "伏特加", "琴酒", "君度橙酒", "梅酒", "百香果"],
-    ingredientsEn: ["Rum", "Vodka", "Gin", "Cointreau", "Plum Wine", "Passion Fruit"],
-    storyEn: "There are no churches at sea; sailors have their own prayers.\nRum is the deck, gin is the wind, plum wine is the memory of shore,\npassion fruit is that sudden beam of light in the tropical night.\nOne sip and you'll understand —\nwhy those who sail far always talk to the stars.",
-    story: "大海上沒有教堂，水手有水手的祈禱。\n蘭姆酒是甲板、琴酒是風、梅酒是岸上的記憶，百香果是熱帶夜裡那束突然出現的光。\n一杯下去你就懂——為什麼遠航的人總要對著星星說話。"
-  },
-  {
-    cn: "青梅竹馬", en: "Childhood Sweethearts",
-    vol: "95ml", abv: "16%", price: 350,
-    taste: { acid: 2, sweet: 3.5, alc: 3, body: 3 },
-    img: "img/cocktails/cocktail-09-childhood.jpg",
-    ingredients: ["梅酒", "白蘭地", "君度橙酒", "青蘋果"],
-    ingredientsEn: ["Plum Wine", "Brandy", "Cointreau", "Green Apple"],
-    storyEn: "Not every childhood sweetheart ends up together.\nBut that summer afternoon, that winding alley, the way your name was called —\nthey're still tucked into the warmest corner of memory.\nGreen apple is the tartness of first meeting, plum wine the sweetness of time,\nbrandy the warmth understood only later.",
-    story: "不是每個青梅竹馬最後都在一起。\n但那個夏天的午後、那條彎彎的小巷、那聲喊你名字的口吻，還是會被收進記憶最暖的角落。\n青蘋果是初遇的酸，梅酒是時間的甜，白蘭地是後來才懂的溫度。"
-  },
-  {
-    cn: "女王蜂", en: "Queen Bee",
-    vol: "100ml", abv: "28%", price: 400,
-    taste: { acid: 2, sweet: 3, alc: 5, body: 5 },
-    img: "img/cocktails/cocktail-10-queenbee.jpg",
-    ingredients: ["威士忌", "巨峰葡萄香甜酒", "君度橙酒", "檸檬"],
-    ingredientsEn: ["Whiskey", "Kyoho Grape Liqueur", "Cointreau", "Lemon"],
-    storyEn: "Not every mountain needs to be conquered.\nSome just stand there, a landscape unto themselves.\nFour Roses is the armor on her shoulders, Kyoho grape the purple of her gown,\nyou can only look up —\nthen drink down this fire, and remember you once held your head this high.",
-    story: "不是每座山都需要被征服。\n有些山就站在那裡，自成風景。\n四玫瑰是她肩上的盔甲，巨峰葡萄是她裙擺的紫色，你只能仰望——\n然後喝下這口烈，記住自己曾經這樣抬頭過。"
-  }
+  { key:"Bondi Beach",                    vol:"105ml", abv:"16%", price:300, taste:{acid:2,sweet:4,alc:2,body:2}, img:"img/cocktails/cocktail-01-bondi.jpg" },
+  { key:"Apollo",                         vol:"110ml", abv:"20%", price:300, taste:{acid:2,sweet:3,alc:4,body:3}, img:"img/cocktails/cocktail-02-apollo.jpg" },
+  { key:"Casino",                         vol:"130ml", abv:"23%", price:350, taste:{acid:2,sweet:3,alc:4,body:4}, img:"img/cocktails/cocktail-03-casino.jpg" },
+  { key:"Ode of the River Goddess",       vol:"90ml",  abv:"12%", price:300, taste:{acid:4,sweet:3.5,alc:1,body:3}, img:"img/cocktails/cocktail-04-hibiscus.jpg" },
+  { key:"Sexual Transformation Sangria",  vol:"145ml", abv:"11%", price:350, taste:{acid:3,sweet:2,alc:1,body:2}, img:"img/cocktails/cocktail-05-sangria.jpg" },
+  { key:"Daydream",                       vol:"110ml", abv:"18%", price:350, taste:{acid:1,sweet:4,alc:3,body:4}, img:"img/cocktails/cocktail-06-daydream.jpg" },
+  { key:"Angry Charlie",                  vol:"85ml",  abv:"15%", price:350, taste:{acid:2,sweet:3,alc:2,body:2}, img:"img/cocktails/cocktail-07-charlie.jpg" },
+  { key:"Seaman Bishop",                  vol:"140ml", abv:"25%", price:400, taste:{acid:3,sweet:3,alc:5,body:5}, img:"img/cocktails/cocktail-08-bishop.jpg" },
+  { key:"Childhood Sweethearts",          vol:"95ml",  abv:"16%", price:350, taste:{acid:2,sweet:3.5,alc:3,body:3}, img:"img/cocktails/cocktail-09-childhood.jpg" },
+  { key:"Queen Bee",                      vol:"100ml", abv:"28%", price:400, taste:{acid:2,sweet:3,alc:5,body:5}, img:"img/cocktails/cocktail-10-queenbee.jpg" }
 ];
 
 const sodas = [
-  { cn: "巨峰葡萄好氣", en: "Angry Kyoho Grape",   price: 200 },
-  { cn: "仙人掌好氣",   en: "Angry Cactus",        price: 200 },
-  { cn: "覆盆莓好氣",   en: "Angry Raspberry",     price: 200 },
-  { cn: "葡萄柚好氣",   en: "Angry Grapefruit",    price: 200 },
-  { cn: "百香好氣",     en: "Angry Passion Fruit", price: 200 },
-  { cn: "桑椹好氣",     en: "Angry Mulberry",      price: 200 },
-  { cn: "綜合好氣",     en: "Angry Mix",           price: 200 },
-  { cn: "特調好氣",     en: "Angry Special",       price: 250 }
+  { key:"Angry Kyoho Grape",   price:200 },
+  { key:"Angry Cactus",        price:200 },
+  { key:"Angry Raspberry",     price:200 },
+  { key:"Angry Grapefruit",    price:200 },
+  { key:"Angry Passion Fruit", price:200 },
+  { key:"Angry Mulberry",      price:200 },
+  { key:"Angry Mix",           price:200 },
+  { key:"Angry Special",       price:250 }
 ];
 
 const kombuchas = [
-  { cn: "風茹仙人掌康普茶", en: "Fengru & Cactus Kombucha", price: 160, sub: "無酒精 ｜ Non-alcoholic", img: "img/kombucha-fengru.jpg" }
+  { key:"Fengru & Cactus Kombucha", price:160, img:"img/kombucha-fengru.jpg" }
 ];
 
 // ============ RENDER ============
@@ -1552,101 +1727,165 @@ function stars(n, total = 5) {
   const pct = Math.max(0, Math.min(100, (n / total) * 100));
   return `<span class="rating"><span class="rating-bg">${'★'.repeat(total)}</span><span class="rating-fg" style="width:${pct}%">${'★'.repeat(total)}</span></span>`;
 }
+function esc(s){ return String(s).replace(/"/g,'&quot;'); }
+function enName(section, key){ const m = MENU.en[section] && MENU.en[section][key]; return (typeof m === 'string') ? m : (m && m.name) || key; }
+// English sub-label under native name (skip on English view to avoid duplicate)
+function enSub(section, key){ return lang === 'en' ? '' : `<span class="en">${enName(section,key)}</span>`; }
 
-const egrid = document.getElementById('eats-grid');
-eats.forEach((e) => {
-  const card = document.createElement('article');
-  card.className = 'eats-card';
-  card.innerHTML = `
-    <figure class="eats-img">
-      <img src="${e.img}" alt="${e.cn} ${e.en} ｜ NT$${e.price} ｜ ${e.spicy} ｜ ${e.tagZh}" loading="lazy"
-           onerror="this.parentElement.classList.add('img-missing'); this.style.display='none';">
-      <figcaption class="eats-caption-fallback">
-        <h3>${e.cn}</h3>
-        <p class="en">${e.en}</p>
-        <p class="price"><span class="currency">NT$</span>${e.price}</p>
-        <span class="spicy">${e.spicy}</span>
-        <p class="tag-zh">${e.tagZh}</p>
-        <p class="tag-en">${e.tagEn}</p>
-        <p class="note-zh">${e.noteZh}</p>
-        <p class="note-en">${e.noteEn}</p>
-      </figcaption>
-    </figure>
-    <div class="sr-only">
-      <h3>${e.cn} ｜ ${e.en}</h3>
-      <p>NT$${e.price} ｜ ${e.spicy}</p>
-      <p>${e.tagZh} ｜ ${e.tagEn}</p>
-      <p>${e.noteZh} ｜ ${e.noteEn}</p>
-    </div>
-  `;
-  egrid.appendChild(card);
-});
+function renderEats(){
+  const grid = document.getElementById('eats-grid');
+  grid.innerHTML = '';
+  eats.forEach((e) => {
+    const tr = trItem('eats', e.key) || {};
+    const spicy = t('spicy_mild');
+    const card = document.createElement('article');
+    card.className = 'eats-card';
+    card.innerHTML = `
+      <figure class="eats-img">
+        <img src="${e.img}" alt="${esc(tr.name)} ｜ NT$${e.price}" loading="lazy"
+             onerror="this.parentElement.classList.add('img-missing'); this.style.display='none';">
+        <figcaption class="eats-caption-fallback">
+          <h3>${tr.name||''}</h3>
+          <p class="en">${enName('eats', e.key)}</p>
+          <p class="price"><span class="currency">NT$</span>${e.price}</p>
+          <span class="spicy">${spicy}</span>
+          <p class="tag-zh">${tr.tag||''}</p>
+          <p class="note-zh">${tr.note||''}</p>
+        </figcaption>
+      </figure>
+      <div class="sr-only">
+        <h3>${tr.name||''} ｜ ${enName('eats', e.key)}</h3>
+        <p>NT$${e.price} ｜ ${spicy}</p>
+        <p>${tr.tag||''}</p>
+        <p>${tr.note||''}</p>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
 
-const cgrid = document.getElementById('cocktail-grid');
-cocktails.forEach((c) => {
-  const article = document.createElement('article');
-  article.className = 'cocktail';
-  article.innerHTML = `
-    ${c.img ? `<figure class="cocktail-img">
-      <img src="${c.img}" alt="${c.cn} ${c.en}" loading="lazy"
-           onerror="this.parentElement.classList.add('no-img');this.style.display='none';">
-    </figure>` : ''}
-    <div class="head" onclick="toggleCard(this)">
-      <h3>${c.cn}<span class="en">${c.en}</span></h3>
-      <div class="stat">
-        <span class="vol">${c.vol} ｜ ABV ${c.abv}</span>
-        <span class="price">NT$ ${c.price}</span>
+function renderCocktails(){
+  const grid = document.getElementById('cocktail-grid');
+  grid.innerHTML = '';
+  cocktails.forEach((c) => {
+    const tr = trItem('cocktails', c.key) || {};
+    const ing = tr.ingredients || [];
+    const article = document.createElement('article');
+    article.className = 'cocktail';
+    article.innerHTML = `
+      ${c.img ? `<figure class="cocktail-img">
+        <img src="${c.img}" alt="${esc(tr.name)}" loading="lazy"
+             onerror="this.parentElement.classList.add('no-img');this.style.display='none';">
+      </figure>` : ''}
+      <div class="head" onclick="toggleCard(this)">
+        <h3>${tr.name||''}${enSub('cocktails', c.key)}</h3>
+        <div class="stat">
+          <span class="vol">${c.vol} ｜ ABV ${c.abv}</span>
+          <span class="price">NT$ ${c.price}</span>
+        </div>
+        <div class="taste">
+          <div><span class="t-name">${t('taste_sour')}</span>${stars(c.taste.acid)}</div>
+          <div><span class="t-name">${t('taste_sweet')}</span>${stars(c.taste.sweet)}</div>
+          <div><span class="t-name">${t('taste_strength')}</span>${stars(c.taste.alc)}</div>
+          <div><span class="t-name">${t('taste_body')}</span>${stars(c.taste.body)}</div>
+        </div>
+        <div class="ingredients">
+          <span class="ing-label">${t('ingredients_label')}</span>
+          <span class="ing-list">${ing.map((g,i,a)=>`<span class="ing-item">${i===0?`<b>${g}</b>`:g}${i<a.length-1?' ·':''}</span>`).join(' ')}</span>
+        </div>
+        <div class="toggle-hint">${t('story_hint')}</div>
       </div>
-      <div class="taste">
-        <div><span class="t-name">酸 <em>Sour</em></span>${stars(c.taste.acid)}</div>
-        <div><span class="t-name">甜 <em>Sweet</em></span>${stars(c.taste.sweet)}</div>
-        <div><span class="t-name">酒感 <em>Strength</em></span>${stars(c.taste.alc)}</div>
-        <div><span class="t-name">濃度 <em>Body</em></span>${stars(c.taste.body)}</div>
+      <div class="story">
+        <div class="story-inner"><p>${tr.story||''}</p></div>
       </div>
-      <div class="ingredients">
-        <span class="ing-label">成分 / Ingredients</span>
-        <span class="ing-list">${c.ingredients.map((g,i,a)=>`<span class="ing-item">${i===0?`<b>${g}</b>`:g}${i<a.length-1?' ·':''}</span>`).join(' ')}</span>
-        <span class="ing-list ing-en">${c.ingredientsEn.map((g,i,a)=>`<span class="ing-item">${i===0?`<b>${g}</b>`:g}${i<a.length-1?' ·':''}</span>`).join(' ')}</span>
-      </div>
-      <div class="toggle-hint">STORY</div>
-    </div>
-    <div class="story">
-      <div class="story-inner"><p>${c.story}</p><p class="story-en">${c.storyEn}</p></div>
-    </div>
-  `;
-  cgrid.appendChild(article);
-});
+    `;
+    grid.appendChild(article);
+  });
+}
 
-const sgrid = document.getElementById('soda-grid');
-sodas.forEach((s) => {
-  const card = document.createElement('div');
-  card.className = 'simple-card';
-  card.innerHTML = `
-    <div class="name">${s.cn}<span class="en">${s.en}</span></div>
-    <div class="meta"><span class="price">NT$ ${s.price}</span></div>
-  `;
-  sgrid.appendChild(card);
-});
+function renderSodas(){
+  const grid = document.getElementById('soda-grid');
+  grid.innerHTML = '';
+  sodas.forEach((s) => {
+    const name = trItem('sodas', s.key) || s.key;
+    const card = document.createElement('div');
+    card.className = 'simple-card';
+    card.innerHTML = `
+      <div class="name">${name}${enSub('sodas', s.key)}</div>
+      <div class="meta"><span class="price">NT$ ${s.price}</span></div>
+    `;
+    grid.appendChild(card);
+  });
+}
 
-const kgrid = document.getElementById('kombucha-grid');
-kombuchas.forEach((k) => {
-  const card = document.createElement('div');
-  card.className = 'simple-card kombucha-card';
-  card.innerHTML = `
-    ${k.img ? `<figure class="k-img">
-      <img src="${k.img}" alt="${k.cn} ${k.en}" loading="lazy"
-           onerror="this.parentElement.style.display='none';">
-    </figure>` : ''}
-    <div class="k-body">
-      <div class="name">${k.cn}<span class="en">${k.en}</span></div>
-      <div class="meta">
-        <span class="price">NT$ ${k.price}</span>
-        <span class="sub">${k.sub}</span>
+function renderKombucha(){
+  const grid = document.getElementById('kombucha-grid');
+  grid.innerHTML = '';
+  kombuchas.forEach((k) => {
+    const tr = trItem('kombucha', k.key) || {};
+    const card = document.createElement('div');
+    card.className = 'simple-card kombucha-card';
+    card.innerHTML = `
+      ${k.img ? `<figure class="k-img">
+        <img src="${k.img}" alt="${esc(tr.name)}" loading="lazy"
+             onerror="this.parentElement.style.display='none';">
+      </figure>` : ''}
+      <div class="k-body">
+        <div class="name">${tr.name||''}${enSub('kombucha', k.key)}</div>
+        <div class="meta">
+          <span class="price">NT$ ${k.price}</span>
+          <span class="sub">${tr.sub||''}</span>
+        </div>
       </div>
-    </div>
-  `;
-  kgrid.appendChild(card);
-});
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function renderAll(){ renderEats(); renderCocktails(); renderSodas(); renderKombucha(); }
+
+// ============ APPLY I18N (static elements) ============
+function applyI18n(){
+  document.documentElement.lang = HTML_LANG[lang] || 'en';
+  document.title = t('doc_title');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = t(el.getAttribute('data-i18n'));
+    el.textContent = v;
+    if (el.classList.contains('hide-when-empty')) el.style.display = v ? '' : 'none';
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    el.innerHTML = t(el.getAttribute('data-i18n-html'));
+  });
+  const ul = document.getElementById('about-list');
+  if (ul) { const items = t('about_services_list') || []; ul.innerHTML = items.map(x => `<li>${x}</li>`).join(''); }
+}
+
+// ============ LANGUAGE SWITCHER ============
+function buildSwitch(){
+  const labels = { zh:'中', en:'EN', ja:'日', ko:'한' };
+  const el = document.getElementById('lang-switch');
+  if (!el) return;
+  el.innerHTML = SUPPORTED.map(l => `<button type="button" data-lang="${l}" aria-label="${l}">${labels[l]}</button>`).join('');
+  el.querySelectorAll('button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+}
+function updateSwitch(){
+  document.querySelectorAll('#lang-switch button').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+}
+function setLang(l){
+  if (!SUPPORTED.includes(l)) return;
+  lang = l;
+  try { localStorage.setItem('c7lang', l); } catch(e){}
+  try { const u = new URL(location.href); u.searchParams.set('lang', l); history.replaceState(null, '', u); } catch(e){}
+  applyI18n(); renderAll(); updateSwitch();
+  if (window.__c7updateStatus) window.__c7updateStatus();
+}
+
+buildSwitch();
+applyI18n();
+renderAll();
+updateSwitch();
 
 // ============ LIVE STATUS ============
 // 營業時段：每日 18:07 — 翌日 00:07 ｜ 週一(1)、週四(4) 公休
@@ -1677,7 +1916,7 @@ kombuchas.forEach((k) => {
         const minsLeft = OPEN_END - totalMin;
         return {
           state: minsLeft <= 30 ? 'soon' : 'open',
-          label: `營業中 Open · ${fmtDuration(minsLeft)} left`
+          key: 'status_open', dur: fmtDuration(minsLeft)
         };
       }
     }
@@ -1687,7 +1926,7 @@ kombuchas.forEach((k) => {
         const minsLeft = (24 * 60 + OPEN_END) - totalMin;
         return {
           state: minsLeft <= 30 ? 'soon' : 'open',
-          label: `營業中 Open · ${fmtDuration(minsLeft)} left`
+          key: 'status_open', dur: fmtDuration(minsLeft)
         };
       }
     }
@@ -1705,22 +1944,23 @@ kombuchas.forEach((k) => {
       }
       return {
         state: minsTo <= 60 ? 'soon' : 'closed',
-        label: `公休 Closed · opens in ${fmtDuration(minsTo)}`
+        key: 'status_closed_opens', dur: fmtDuration(minsTo)
       };
     }
-    return { state: 'closed', label: '公休 Closed' };
+    return { state: 'closed', key: 'status_closed', dur: '' };
   }
 
   function update() {
     const pill = document.getElementById('status-pill');
     const label = document.getElementById('status-label');
     if (!pill || !label) return;
-    const { state, label: text } = getStatus();
+    const { state, key, dur } = getStatus();
     pill.classList.remove('open', 'soon', 'closed');
     pill.classList.add(state);
-    label.textContent = text;
+    label.textContent = t(key).replace('{t}', dur || '');
     updateProgressDot();
   }
+  window.__c7updateStatus = update;
 
   function updateProgressDot() {
     const wrapper = document.getElementById('hours-progress');
