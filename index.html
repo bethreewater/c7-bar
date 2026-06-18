@@ -1368,7 +1368,21 @@ article.cocktail .add-btn { display: block; width: 100%; margin-top: 14px; text-
 .cart-title { font-family: var(--serif); font-size: 22px; color: var(--ink); letter-spacing: 0.04em; }
 .cart-close { background: none; border: none; color: var(--ink-mute); font-size: 11px; letter-spacing: 0.18em; padding-left: 0.18em; cursor: pointer; }
 .cart-close:hover { color: var(--ink); }
-.cart-note { font-size: 11px; color: var(--ink-faint); letter-spacing: 0.02em; line-height: 1.6; margin: 8px 0 16px; }
+.cart-cta {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  text-align: center;
+  line-height: 1.5;
+  margin: 16px 0 8px;
+  padding: 14px 16px;
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  background: rgba(201, 169, 97, 0.10);
+}
+.cart-note { font-size: 10.5px; color: var(--ink-faint); text-align: center; letter-spacing: 0.04em; line-height: 1.5; margin: 0 0 16px; }
 .cart-row { display: flex; justify-content: space-between; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--line-soft); }
 .cart-name { font-size: 15px; color: var(--ink); letter-spacing: 0.02em; }
 .cart-qty { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
@@ -1399,6 +1413,7 @@ article.cocktail .add-btn { display: block; width: 100%; margin-top: 14px; text-
       <span class="cart-title" id="cart-title"></span>
       <button type="button" class="cart-close" id="cart-close" onclick="closeCart()"></button>
     </div>
+    <p class="cart-cta" id="cart-cta"></p>
     <p class="cart-note" id="cart-note"></p>
     <div id="cart-list"></div>
     <div class="cart-foot"><button type="button" class="cart-clear" id="cart-clear" onclick="clearCart()"></button></div>
@@ -2119,10 +2134,10 @@ buildSwitch();
 
 // ============ CART (in-person order pad, no checkout) ============
 const CART_I18N = {
-  zh: { add:"加入", fab:"清單", title:"我的清單", empty:"清單還是空的", note:"此清單僅供參考，不是線上結帳——請現場向店員點單。", clear:"清空", close:"關閉" },
-  en: { add:"Add", fab:"List", title:"My List", empty:"Your list is empty", note:"This is a reference list, not online checkout — please order in person.", clear:"Clear", close:"Close" },
-  ja: { add:"追加", fab:"リスト", title:"マイリスト", empty:"リストは空です", note:"これは参考用リストで、オンライン注文ではありません。店内でスタッフにご注文ください。", clear:"クリア", close:"閉じる" },
-  ko: { add:"담기", fab:"리스트", title:"내 리스트", empty:"리스트가 비어 있습니다", note:"참고용 리스트이며 온라인 결제가 아닙니다. 매장에서 직원에게 주문해 주세요.", clear:"비우기", close:"닫기" }
+  zh: { add:"加入", fab:"清單", title:"我的清單", empty:"清單還是空的", cta:"請現場向店員點單", note:"此清單僅供參考，不是線上結帳", clear:"清空", close:"關閉" },
+  en: { add:"Add", fab:"List", title:"My List", empty:"Your list is empty", cta:"Please order in person with our staff", note:"A reference list only — not online checkout", clear:"Clear", close:"Close" },
+  ja: { add:"追加", fab:"リスト", title:"マイリスト", empty:"リストは空です", cta:"店内でスタッフにご注文ください", note:"これは参考用リストで、オンライン注文ではありません", clear:"クリア", close:"閉じる" },
+  ko: { add:"담기", fab:"리스트", title:"내 리스트", empty:"리스트가 비어 있습니다", cta:"매장에서 직원에게 주문해 주세요", note:"참고용 리스트이며 온라인 결제가 아닙니다", clear:"비우기", close:"닫기" }
 };
 function ct(key){ for (const l of [lang,'en','zh']) { const v = CART_I18N[l] && CART_I18N[l][key]; if (v != null) return v; } return ''; }
 
@@ -2155,7 +2170,7 @@ function renderCartList(){
     </div>`;
   }).join('');
 }
-function refreshCartLabels(){ setText('cart-title', ct('title')); setText('cart-note', ct('note')); setText('cart-clear', ct('clear')); setText('cart-close', ct('close')); }
+function refreshCartLabels(){ setText('cart-title', ct('title')); setText('cart-cta', ct('cta')); setText('cart-note', ct('note')); setText('cart-clear', ct('clear')); setText('cart-close', ct('close')); }
 function updateCart(){
   const n = cartCount();
   setText('cart-fab-count', n);
