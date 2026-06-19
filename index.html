@@ -72,6 +72,10 @@
       { "@type": "MenuSection", "name": "康普茶 / Kombucha (NT$160, 無酒精)",
         "hasMenuItem": [
           { "@type": "MenuItem", "name": "風茹仙人掌康普茶 Fengru & Cactus Kombucha", "offers": { "@type": "Offer", "price": "160", "priceCurrency": "TWD" } }
+        ] },
+      { "@type": "MenuSection", "name": "無糖飲料 / Tea (NT$100, 無糖)",
+        "hasMenuItem": [
+          { "@type": "MenuItem", "name": "風茹茶 Fengru Herbal Tea", "offers": { "@type": "Offer", "price": "100", "priceCurrency": "TWD" } }
         ] }
     ]
   }
@@ -1457,6 +1461,7 @@ article.cocktail .add-btn { display: block; width: 100%; margin-top: 14px; text-
   <a href="#cocktails" data-i18n="nav_cocktails"></a>
   <a href="#mocktail" data-i18n="nav_soda"></a>
   <a href="#kombucha" data-i18n="nav_kombucha"></a>
+  <a href="#tea" data-i18n="nav_tea"></a>
   <a href="#visit" data-i18n="nav_visit"></a>
   <a href="#about" data-i18n="nav_about"></a>
 </nav>
@@ -1490,6 +1495,14 @@ article.cocktail .add-btn { display: block; width: 100%; margin-top: 14px; text-
   <div class="section-rule"></div>
   <div class="simple-grid" id="kombucha-grid"></div>
   <p class="section-note" data-i18n="note_kombucha"></p>
+</section>
+
+<!-- ============ TEA / 無糖飲料 ============ -->
+<section id="tea">
+  <h2 class="section-title">TEA<span class="zh hide-when-empty" data-i18n="sec_tea"></span></h2>
+  <div class="section-rule"></div>
+  <div class="simple-grid" id="tea-grid"></div>
+  <p class="section-note" data-i18n="note_tea"></p>
 </section>
 
 <!-- ============ VISIT ============ -->
@@ -1576,6 +1589,7 @@ const I18N = {
     nav_eats:"主食", nav_cocktails:"雞尾酒", nav_soda:"好氣", nav_kombucha:"康普茶", nav_visit:"前來", nav_about:"關於",
     sec_eats:"主食", sec_cocktails:"雞尾酒", sec_soda:"好氣氣泡飲", sec_kombucha:"康普茶", sec_visit:"前來", sec_about:"關於",
     note_eats:"慢燉入味・秘藏濃香", note_soda:"無酒精・果香氣泡", note_kombucha:"澎湖風茹 × 仙人掌果・自然發酵・無酒精",
+    nav_tea:"茶飲", sec_tea:"無糖飲料", note_tea:"澎湖風茹煮的茶・無糖回甘",
     taste_sour:"酸", taste_sweet:"甜", taste_strength:"酒感", taste_body:"濃度",
     ingredients_label:"成分", story_hint:"故事", spicy_mild:"微微辣",
     lbl_hours:"HOURS ｜ 營業時間", lbl_address:"ADDRESS ｜ 地址", lbl_contact:"CONTACT ｜ 訂位",
@@ -1605,6 +1619,7 @@ const I18N = {
     nav_eats:"Eats", nav_cocktails:"Cocktails", nav_soda:"Soda", nav_kombucha:"Kombucha", nav_visit:"Visit", nav_about:"About",
     sec_eats:"", sec_cocktails:"", sec_soda:"", sec_kombucha:"", sec_visit:"", sec_about:"",
     note_eats:"Slow-braised, deeply savory", note_soda:"Non-alcoholic fruit soda", note_kombucha:"Naturally fermented with Penghu fengru & cactus fruit",
+    nav_tea:"Tea", sec_tea:"", note_tea:"Brewed Penghu fengru herb · sugar-free, naturally mellow",
     taste_sour:"Sour", taste_sweet:"Sweet", taste_strength:"Strength", taste_body:"Body",
     ingredients_label:"Ingredients", story_hint:"STORY", spicy_mild:"Mildly Spicy",
     lbl_hours:"HOURS", lbl_address:"ADDRESS", lbl_contact:"CONTACT",
@@ -1634,6 +1649,7 @@ const I18N = {
     nav_eats:"お食事", nav_cocktails:"カクテル", nav_soda:"ソーダ", nav_kombucha:"コンブチャ", nav_visit:"アクセス", nav_about:"店舗情報",
     sec_eats:"お食事", sec_cocktails:"カクテル", sec_soda:"アングリー・ソーダ", sec_kombucha:"コンブチャ", sec_visit:"アクセス", sec_about:"店舗情報",
     note_eats:"じっくり煮込んだ、深い旨み", note_soda:"ノンアルコール・果実の泡", note_kombucha:"澎湖の風茹 × サボテンの実・自然発酵・ノンアルコール",
+    nav_tea:"ティー", sec_tea:"無糖ドリンク", note_tea:"澎湖の風茹で淹れたお茶・無糖でほのかな甘み",
     taste_sour:"酸味", taste_sweet:"甘味", taste_strength:"強さ", taste_body:"ボディ",
     ingredients_label:"材料", story_hint:"ストーリー", spicy_mild:"ほんのり辛い",
     lbl_hours:"HOURS ｜ 営業時間", lbl_address:"ADDRESS ｜ 住所", lbl_contact:"CONTACT ｜ ご予約",
@@ -1663,6 +1679,7 @@ const I18N = {
     nav_eats:"푸드", nav_cocktails:"칵테일", nav_soda:"소다", nav_kombucha:"콤부차", nav_visit:"오시는 길", nav_about:"소개",
     sec_eats:"푸드", sec_cocktails:"칵테일", sec_soda:"앵그리 소다", sec_kombucha:"콤부차", sec_visit:"오시는 길", sec_about:"매장 정보",
     note_eats:"오래 졸여 깊고 진하게", note_soda:"무알코올・과일향 탄산", note_kombucha:"펑후 펑루 × 선인장 열매・자연 발효・무알코올",
+    nav_tea:"티", sec_tea:"무가당 음료", note_tea:"펑후 펑루로 우린 차・무가당, 은은한 단맛",
     taste_sour:"신맛", taste_sweet:"단맛", taste_strength:"강도", taste_body:"바디",
     ingredients_label:"재료", story_hint:"스토리", spicy_mild:"약간 매콤",
     lbl_hours:"HOURS ｜ 영업시간", lbl_address:"ADDRESS ｜ 주소", lbl_contact:"CONTACT ｜ 예약",
@@ -1734,6 +1751,9 @@ const MENU = {
     },
     kombucha: {
       "Fengru & Cactus Kombucha": { name:"風茹仙人掌康普茶", sub:"無酒精" }
+    },
+    tea: {
+      "Fengru Herbal Tea": { name:"風茹茶", sub:"無糖" }
     }
   },
   en: {
@@ -1760,6 +1780,9 @@ const MENU = {
     },
     kombucha: {
       "Fengru & Cactus Kombucha": { name:"Fengru & Cactus Kombucha", sub:"Non-alcoholic" }
+    },
+    tea: {
+      "Fengru Herbal Tea": { name:"Fengru Herbal Tea", sub:"Sugar-free" }
     }
   },
   ja: {
@@ -1786,6 +1809,9 @@ const MENU = {
     },
     kombucha: {
       "Fengru & Cactus Kombucha": { name:"風茹サボテン・コンブチャ", sub:"ノンアルコール" }
+    },
+    tea: {
+      "Fengru Herbal Tea": { name:"風茹茶", sub:"無糖" }
     }
   },
   ko: {
@@ -1812,6 +1838,9 @@ const MENU = {
     },
     kombucha: {
       "Fengru & Cactus Kombucha": { name:"펑루 선인장 콤부차", sub:"무알코올" }
+    },
+    tea: {
+      "Fengru Herbal Tea": { name:"펑루차", sub:"무가당" }
     }
   }
 };
@@ -1848,6 +1877,10 @@ const sodas = [
 
 const kombuchas = [
   { key:"Fengru & Cactus Kombucha", price:160, img:"img/kombucha-fengru.jpg" }
+];
+
+const teas = [
+  { key:"Fengru Herbal Tea", price:100, img:"img/tea-fengru.jpg" }
 ];
 
 // ============ RENDER ============
@@ -1976,7 +2009,32 @@ function renderKombucha(){
   });
 }
 
-function renderAll(){ renderEats(); renderCocktails(); renderSodas(); renderKombucha(); }
+function renderTea(){
+  const grid = document.getElementById('tea-grid');
+  grid.innerHTML = '';
+  teas.forEach((tm) => {
+    const tr = trItem('tea', tm.key) || {};
+    const card = document.createElement('div');
+    card.className = 'simple-card kombucha-card';
+    card.innerHTML = `
+      ${tm.img ? `<figure class="k-img">
+        <img src="${tm.img}" alt="${esc(tr.name)}" loading="lazy"
+             onerror="this.parentElement.style.display='none';">
+      </figure>` : ''}
+      <div class="k-body">
+        <div class="name">${tr.name||''}${enSub('tea', tm.key)}</div>
+        <div class="meta">
+          <span class="price">NT$ ${tm.price}</span>
+          <span class="sub">${tr.sub||''}</span>
+        </div>
+        <button type="button" class="add-btn add-btn-sm k-add" onclick="addToCart('tea','${tm.key}')" aria-label="${ct('add')}">＋ ${ct('add')}</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function renderAll(){ renderEats(); renderCocktails(); renderSodas(); renderKombucha(); renderTea(); }
 
 // ============ APPLY I18N (static elements) ============
 function applyI18n(){
